@@ -36,3 +36,11 @@
 .catalog-picker select{font-size:12px;max-width:100%}
 .active-catalog{max-width:100%;font-size:12px}
 @media(max-width:600px){.catalog-bar{padding:14px}.catalog-actions{align-items:flex-start;gap:10px}.catalog-actions>button{white-space:normal;text-align:left}.catalog-switch{width:100%}.catalog-context>label{width:100%}}
+
+.catalog-switch input{appearance:none;position:relative;flex-shrink:0;border:1px solid var(--border);border-radius:999px;background:var(--border);transition:background .15s}
+.catalog-switch input::before{content:"";position:absolute;left:2px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--paper);transition:transform .15s}
+.catalog-switch input:checked{background:var(--blue);border-color:var(--blue)}
+.catalog-switch input:checked::before{transform:translateX(16px)}
+.catalog-switch input:disabled{opacity:.45;cursor:default}
+.catalog-switch input:focus-visible{outline:2px solid var(--ring);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.catalog-switch input,.catalog-switch input::before{transition:none}}

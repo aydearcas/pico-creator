@@ -19,7 +19,7 @@ export function validateCatalog(value){
   }
   let count=0;
   const item=x=>{
-   count++;if(ids.has(x.id))errors.push('CATALOG_DUPLICATE_ID');ids.add(x.id);
+   count++;if(value.verification.status==='source_reviewed'&&!x.children?.length&&!x.source_ids.length)errors.push('CATALOG_UNSOURCED_ITEM');if(ids.has(x.id))errors.push('CATALOG_DUPLICATE_ID');ids.add(x.id);
    for(const id of x.source_ids)if(!sources.has(id))errors.push('CATALOG_SOURCE_REFERENCE');
    for(const child of x.children||[])item(child);
   };

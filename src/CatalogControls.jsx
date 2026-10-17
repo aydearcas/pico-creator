@@ -15,7 +15,7 @@ export function CatalogBar({pico,documentId,t,lang,onImport,onUpdate,onError,onQ
    <input type="file" accept=".json,application/json" hidden ref={input} onChange={readFile} data-catalog-file="true"/>
    <button type="button" onClick={()=>input.current.click()}>{t('importCatalog')}</button>
    <label className="catalog-switch"><input type="checkbox" role="switch" aria-label={t('showPreloaded')} checked={!!state?.visible} disabled={!catalog} onChange={e=>onUpdate(p=>{p.catalogo_variables.visible=e.target.checked;})}/><span>{t('showPreloaded')}</span></label>
-   <button type="button" className="text-button" onClick={()=>onImport(demo,documentId)}>{t('tryDermatomyositis')}</button>
+   <button type="button" className="text-button" onClick={()=>onImport(demo,documentId,{fillQuestionIfEmpty:true})}>{t('tryDermatomyositis')}</button>
    <button type="button" className="text-button" onClick={onDownloadDemo}>{t('downloadCatalogExample')}</button>
   </div>
   {catalog&&<div className="catalog-context">

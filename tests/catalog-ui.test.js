@@ -17,7 +17,7 @@ test('Built editor imports, selects, translates, hides, undoes and reopens candi
  const choose=(select,value)=>{select.value=value;select.dispatchEvent(new dom.window.Event('change',{bubbles:true}));};
  const upload=async(input,data)=>{Object.defineProperty(input,'files',{configurable:true,value:[{size:1000,text:async()=>JSON.stringify(data)}]});input.dispatchEvent(new dom.window.Event('change',{bubbles:true}));await pause();};
  try{
-  scripts.forEach(s=>dom.window.eval(s));await pause();button('Create a new PICO').click();await pause();doc.querySelector('.template-picker button').click();await pause();
+  scripts.forEach(s=>dom.window.eval(s));await pause();doc.querySelector('.home-card.accent-card').click();await pause();doc.querySelector('.template-picker button').click();await pause();
   assert.equal(doc.querySelector('[role="switch"]').disabled,true);
   button('Try dermatomyositis').click();await pause();
   assert.equal(doc.querySelectorAll('.catalog-picker select').length,3);

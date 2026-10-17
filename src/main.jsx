@@ -41,11 +41,11 @@ function App(){
  saveRef.current=save;
  async function openFile(file){if(!file)return;if(file.size>10*1024*1024){setToast(t('tooLarge'));return;}const catalogTarget=docRef.current?.documento_id;try{const data=JSON.parse(await file.text());if(data?.format==='pico-variable-catalog'){if(!docRef.current){setToast(t('catalogOpenFromEditor'));return;}importCatalogue(data,catalogTarget);return;}const errors=validateDocument(data);if(errors.length)throw Error(errors.join(', '));guard(()=>load(data,{saved:true}));}catch(e){setToast(t('fileInvalid')+' '+e.message);}}
  function removeItem(list,apply,item){const nonempty=Object.entries(item).some(([k,v])=>!['id','modo','papel'].includes(k)&&(typeof v==='string'?!!v:v?.type==='doc'?!!plain(v).trim():Array.isArray(v)?v.length>0:typeof v==='number'?true:false));const action=()=>apply(list.filter(x=>x.id!==item.id));if(nonempty)setModal({type:'confirm',text:t('confirmDelete'),action});else action();}
- function importCatalogue(catalog,targetId){
+ function importCatalogue(catalog,targetId,options={}){
   if(docRef.current?.documento_id!==targetId){setToast(t('catalogQuestionChanged'));return;}
   const errors=validateCatalog(catalog);if(errors.length){setToast(t('catalogInvalid')+' '+errors.join(', '));return;}
   if(catalog.question_type!==docRef.current.pico.tipo_pregunta.plantilla){setToast(t('catalogWrongType'));return;}
-  try{update(p=>{importCatalog(p,catalog);},true);setToast(t('catalogImported'));}catch(e){setToast(t('catalogInvalid')+' '+e.message);}
+  try{const next=copy(docRef.current);importCatalog(next.pico,catalog);const fill=options.fillQuestionIfEmpty&&!plain(next.pico.pregunta_clinica).trim();if(fill)next.pico.pregunta_clinica=rich(catalog.clinical_question[lang]);if(new Blob([JSON.stringify(next,null,2)]).size>9*1024*1024){setToast(t('catalogDocumentLimit'));return;}update(p=>{p.catalogo_variables=next.pico.catalogo_variables;if(fill)p.pregunta_clinica=next.pico.pregunta_clinica;},true);setToast(t('catalogImported'));}catch(e){setToast(t('catalogInvalid')+' '+e.message);}
  }
  function addCandidate(kind,id){update(p=>{addCatalogVariable(p,kind,id,lang);},true);}
  function useCatalogueQuestion(text){
