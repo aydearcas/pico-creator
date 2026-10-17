@@ -1,8 +1,8 @@
 import React,{useRef} from 'react';
 import {activeCatalog,candidateText,canAddCandidate,validateCatalog} from './catalog.js';
 export function CatalogBar({pico,documentId,t,lang,onImport,onUpdate,onError,onQuestion,demo,onDownloadDemo}){
- const input=useRef(null),catalog=activeCatalog(pico),state=pico.catalogo_variables;
- const mismatch=!!catalog&&catalog.question_type!==pico.tipo_pregunta.plantilla;
+ const input=useRef(null),catalog=activeCatalog(pico),state=pico.variable_catalogs;
+ const mismatch=!!catalog&&catalog.question_type!==pico.question_type.template;
  async function readFile(event){
   const file=event.target.files?.[0];event.target.value='';if(!file)return;
   const target=documentId;
@@ -14,12 +14,12 @@ export function CatalogBar({pico,documentId,t,lang,onImport,onUpdate,onError,onQ
   <div className="catalog-actions">
    <input type="file" accept=".json,application/json" hidden ref={input} onChange={readFile} data-catalog-file="true"/>
    <button type="button" onClick={()=>input.current.click()}>{t('importCatalog')}</button>
-   <label className="catalog-switch"><input type="checkbox" role="switch" aria-label={t('showPreloaded')} checked={!!state?.visible} disabled={!catalog} onChange={e=>onUpdate(p=>{p.catalogo_variables.visible=e.target.checked;})}/><span>{t('showPreloaded')}</span></label>
+   <label className="catalog-switch"><input type="checkbox" role="switch" aria-label={t('showPreloaded')} checked={!!state?.visible} disabled={!catalog} onChange={e=>onUpdate(p=>{p.variable_catalogs.visible=e.target.checked;})}/><span>{t('showPreloaded')}</span></label>
    <button type="button" className="text-button" onClick={()=>onImport(demo,documentId,{fillQuestionIfEmpty:true})}>{t('tryDermatomyositis')}</button>
    <button type="button" className="text-button" onClick={onDownloadDemo}>{t('downloadCatalogExample')}</button>
   </div>
   {catalog&&<div className="catalog-context">
-   {state.catalogos.length>1?<label>{t('activeCatalog')}<select className="active-catalog" aria-label={t('activeCatalog')} value={state.activo_id} onChange={e=>onUpdate(p=>{p.catalogo_variables.activo_id=e.target.value;})}>{state.catalogos.map(c=><option key={c.catalog_id} value={c.catalog_id}>{candidateText(c.title,lang)}</option>)}</select></label>:<strong>{candidateText(catalog.title,lang)}</strong>}
+   {state.catalogs.length>1?<label>{t('activeCatalog')}<select className="active-catalog" aria-label={t('activeCatalog')} value={state.active_id} onChange={e=>onUpdate(p=>{p.variable_catalogs.active_id=e.target.value;})}>{state.catalogs.map(c=><option key={c.catalog_id} value={c.catalog_id}>{candidateText(c.title,lang)}</option>)}</select></label>:<strong>{candidateText(catalog.title,lang)}</strong>}
    <span className="catalog-status">{t('catalogStatus_'+catalog.verification.status)}</span>
    {mismatch&&<p role="alert" className="inline-warning">{t('catalogTypeMismatch')}</p>}
    <details className="catalog-details"><summary>{t('catalogContextSources')}</summary>
@@ -37,7 +37,7 @@ export function CatalogBar({pico,documentId,t,lang,onImport,onUpdate,onError,onQ
 }
 export function CatalogPicker({pico,kind,t,lang,onSelect}){
  const catalog=activeCatalog(pico);
- if(!catalog||!pico.catalogo_variables?.visible||catalog.question_type!==pico.tipo_pregunta.plantilla)return null;
+ if(!catalog||!pico.variable_catalogs?.visible||catalog.question_type!==pico.question_type.template)return null;
  const caption=t({interventions:'pickIntervention',comparators:'pickComparator',outcomes:'pickOutcome'}[kind]);
  return <label className="catalog-picker"><span className="field-label">{caption}</span>
   <select aria-label={caption} value="" onChange={e=>{const id=e.target.value;if(id)onSelect(kind,id);}}>

@@ -1,12 +1,12 @@
 {
   "format": "pico-variable-catalog",
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "catalog_id": "structure-example",
   "title": {
     "es": "Ejemplo de estructura; sin contenido clínico",
     "en": "Structure example; no clinical content"
   },
-  "question_type": "intervencion",
+  "question_type": "intervention",
   "clinical_question": {
     "es": "Pregunta ficticia para comprobar la estructura del catálogo.",
     "en": "Fictional question used to check the catalogue structure."

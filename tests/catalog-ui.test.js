@@ -34,13 +34,13 @@ test('Built editor imports, selects, translates, hides, undoes and reopens candi
   const invalid=structuredClone(demo);delete invalid.outcomes[0].label.en;
   await upload(doc.querySelector('[data-catalog-file]'),invalid);assert.equal(interventions().textContent,snapshot);
   button('Guardar JSON').click();await pause();const saved=JSON.parse(await captured.text());
-  assert.equal(saved.schema_version,'0.2.0');assert(saved.pico.catalogo_variables);assert.deepEqual(validateDocument(saved),[]);
+  assert.equal(saved.schema_version,'1.0.0');assert(saved.pico.variable_catalogs);assert.deepEqual(validateDocument(saved),[]);
   const open=doc.querySelector('input[type=file]:not([data-catalog-file])');await upload(open,saved);
   assert.equal(interventions().querySelectorAll('.child-card').length,6);
   assert.equal([...selectors()[0].options].find(o=>o.value==='drug-methotrexate').disabled,true);
   const previous=doc.querySelectorAll('.outcome-name').length;choose(selectors()[2],'outcome-itch');await pause();assert.equal(doc.querySelectorAll('.outcome-name').length,previous+1);
   doc.querySelector('[aria-label="Deshacer"]').click();await pause();assert.equal(doc.querySelectorAll('.outcome-name').length,previous);
-  const wrong=structuredClone(demo);wrong.catalog_id='diagnosis';wrong.question_type='diagnostico';wrong.comparators=[];
+  const wrong=structuredClone(demo);wrong.catalog_id='diagnosis';wrong.question_type='diagnostic';wrong.comparators=[];
   await upload(doc.querySelector('[data-catalog-file]'),wrong);assert.equal(doc.querySelector('.catalog-context>strong').textContent,'Dermatomiositis: inmunosupresores');
   assert.deepEqual(errors,[]);
  }finally{dom.window.close();}

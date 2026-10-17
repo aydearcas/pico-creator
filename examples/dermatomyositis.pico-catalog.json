@@ -1,12 +1,12 @@
 {
   "format": "pico-variable-catalog",
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "catalog_id": "dermatomyositis-immunosuppressants-demo",
   "title": {
     "es": "Dermatomiositis: inmunosupresores",
     "en": "Dermatomyositis: immunosuppressants"
   },
-  "question_type": "intervencion",
+  "question_type": "intervention",
   "clinical_question": {
     "es": "En pacientes con dermatomiositis, ¿cuál es el efecto (eficacia y seguridad) de los inmunosupresores sintéticos convencionales, sintéticos dirigidos y biológicos?",
     "en": "In patients with dermatomyositis, what are the efficacy and safety effects of conventional synthetic, targeted synthetic and biological immunosuppressants?"
@@ -291,7 +291,7 @@
       "source_ids": [
         "bsr2022"
       ],
-      "controlled_code": "CUIDADO_HABITUAL",
+      "controlled_code": "USUAL_CARE",
       "children": []
     },
     {
@@ -307,7 +307,7 @@
       "source_ids": [
         "bsr2022"
       ],
-      "controlled_code": "OTROS_FARMACOLOGICOS",
+      "controlled_code": "OTHER_PHARMACOLOGICAL",
       "children": []
     },
     {
@@ -323,7 +323,7 @@
       "source_ids": [
         "stir"
       ],
-      "controlled_code": "SIN_COMPARACION",
+      "controlled_code": "NO_COMPARISON",
       "children": []
     }
   ],

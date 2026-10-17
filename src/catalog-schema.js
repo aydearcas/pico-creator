@@ -2,9 +2,9 @@ import Ajv from 'ajv';
 import schema from '../skills/generate-pico-catalog/references/pico-variable-catalog.schema.json' with {type:'json'};
 const check=new Ajv({strict:false,allErrors:true}).compile(schema);
 export const CATALOG_COMPARATORS={
- intervencion:['PLACEBO','CUIDADO_HABITUAL','CUALQUIER_COMPARADOR','OTROS_FARMACOLOGICOS','SIMULADA','SIN_COMPARACION'],
- diagnostico:['PATRON_REFERENCIA','DIAGNOSTICO_CLINICO','OTRA_PRUEBA','PRUEBA_HABITUAL','CUALQUIER_COMPARADOR','SIN_COMPARACION_PRUEBAS'],
- pronostico:['AUSENCIA_FACTOR','NIVEL_REFERENCIA','OTRO_FACTOR_MODELO','SEGUIMIENTO_HABITUAL','CUALQUIER_COMPARADOR','SIN_COMPARACION']
+ intervention:['PLACEBO','USUAL_CARE','ANY_COMPARATOR','OTHER_PHARMACOLOGICAL','SHAM','NO_COMPARISON'],
+ diagnostic:['REFERENCE_STANDARD','CLINICAL_DIAGNOSIS','OTHER_TEST','USUAL_TEST','ANY_COMPARATOR','NO_TEST_COMPARISON'],
+ prognosis:['FACTOR_ABSENT','REFERENCE_LEVEL','OTHER_FACTOR_OR_MODEL','USUAL_FOLLOW_UP','ANY_COMPARATOR','NO_COMPARISON']
 };
 const validDate=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&Number.isFinite(Date.parse(s))&&new Date(s).toISOString().slice(0,10)===s;
 export function validateCatalog(value){

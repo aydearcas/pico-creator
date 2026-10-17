@@ -1,0 +1,506 @@
+{
+  "format": "pico-variable-catalog",
+  "schema_version": "0.1.0",
+  "catalog_id": "dermatomyositis-immunosuppressants-demo",
+  "title": {
+    "es": "Dermatomiositis: inmunosupresores",
+    "en": "Dermatomyositis: immunosuppressants"
+  },
+  "question_type": "intervencion",
+  "clinical_question": {
+    "es": "En pacientes con dermatomiositis, ¿cuál es el efecto (eficacia y seguridad) de los inmunosupresores sintéticos convencionales, sintéticos dirigidos y biológicos?",
+    "en": "In patients with dermatomyositis, what are the efficacy and safety effects of conventional synthetic, targeted synthetic and biological immunosuppressants?"
+  },
+  "population_notes": {
+    "es": "La pregunta no concreta edad ni afectación orgánica. Los ejemplos proceden principalmente de adultos; RIM incluye dermatomiositis juvenil y otras miopatías. Revisar la aplicabilidad antes de fijar criterios.",
+    "en": "The question does not specify age or organ involvement. Examples mainly concern adults; RIM includes juvenile dermatomyositis and other myopathies. Review applicability before finalising criteria."
+  },
+  "verification": {
+    "status": "partially_reviewed",
+    "checked_on": "2026-10-17",
+    "limitations": {
+      "es": "Catálogo ilustrativo y no exhaustivo. Se han consultado una guía y publicaciones primarias, incluidos resúmenes accesibles. No es una búsqueda sistemática ni una verificación completa de todos los instrumentos o contextos. Incluir un fármaco no presupone beneficio demostrado. La edad, las combinaciones y la afectación orgánica quedan por definir.",
+      "en": "Illustrative, non-exhaustive catalogue. A guideline and primary publications, including accessible abstracts, were consulted. This is not a systematic search or a complete check of all instruments and contexts. Listing a drug does not establish benefit. Age, combination treatment and organ involvement remain to be defined."
+    }
+  },
+  "sources": [
+    {
+      "id": "bsr2022",
+      "source_type": "public_source",
+      "title": "Oldroyd et al. British Society for Rheumatology guideline on management of idiopathic inflammatory myopathy (2022).",
+      "url": "https://discovery.ucl.ac.uk/10147490/8/Machado_keac115.pdf",
+      "locator": "Recommendations (i), adult and paediatric distinctions; pp. 1762–1763.",
+      "accessed_on": "2026-10-17"
+    },
+    {
+      "id": "stir",
+      "source_type": "public_source",
+      "title": "Paik et al. Study of Tofacitinib in Refractory Dermatomyositis: an open-label pilot study (2021).",
+      "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/art.41602",
+      "locator": "Accessible abstract: Methods and secondary outcome measures.",
+      "accessed_on": "2026-10-17"
+    },
+    {
+      "id": "rim",
+      "source_type": "public_source",
+      "title": "Oddis et al. Rituximab in refractory adult and juvenile dermatomyositis and adult polymyositis (2013).",
+      "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/art.37754",
+      "locator": "Accessible abstract: population, placebo-phase design and response outcomes.",
+      "accessed_on": "2026-10-17"
+    },
+    {
+      "id": "abatacept",
+      "source_type": "public_source",
+      "title": "Aggarwal et al. Subcutaneous abatacept plus standard treatment for active inflammatory myopathy: phase 3 trial (2025).",
+      "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/art.43066",
+      "locator": "Primary publication, accessible study description; mixed myositis population.",
+      "accessed_on": "2026-10-17"
+    },
+    {
+      "id": "valor-skin",
+      "source_type": "public_source",
+      "title": "Mangold et al. Skin-specific outcomes of brepocitinib in dermatomyositis: secondary analysis of VALOR (2026).",
+      "url": "https://jamanetwork.com/journals/jamadermatology/fullarticle/2853078",
+      "locator": "Abstract, outcome definitions and corticosteroid-reduction outcomes.",
+      "accessed_on": "2026-10-17"
+    }
+  ],
+  "interventions": [
+    {
+      "id": "family-conventional",
+      "label": {
+        "es": "Sintéticos convencionales",
+        "en": "Conventional synthetic"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "source_ids": [
+        "bsr2022"
+      ],
+      "children": [
+        {
+          "id": "drug-methotrexate",
+          "label": {
+            "es": "Metotrexato",
+            "en": "Methotrexate"
+          },
+          "description": {
+            "es": "",
+            "en": ""
+          },
+          "source_ids": [
+            "bsr2022"
+          ]
+        },
+        {
+          "id": "drug-azathioprine",
+          "label": {
+            "es": "Azatioprina",
+            "en": "Azathioprine"
+          },
+          "description": {
+            "es": "",
+            "en": ""
+          },
+          "source_ids": [
+            "bsr2022"
+          ]
+        },
+        {
+          "id": "drug-mycophenolate",
+          "label": {
+            "es": "Micofenolato mofetilo",
+            "en": "Mycophenolate mofetil"
+          },
+          "description": {
+            "es": "",
+            "en": ""
+          },
+          "source_ids": [
+            "bsr2022"
+          ]
+        },
+        {
+          "id": "drug-tacrolimus",
+          "label": {
+            "es": "Tacrolimus",
+            "en": "Tacrolimus"
+          },
+          "description": {
+            "es": "",
+            "en": ""
+          },
+          "source_ids": [
+            "bsr2022"
+          ]
+        },
+        {
+          "id": "drug-ciclosporin",
+          "label": {
+            "es": "Ciclosporina",
+            "en": "Ciclosporin"
+          },
+          "description": {
+            "es": "",
+            "en": ""
+          },
+          "source_ids": [
+            "bsr2022"
+          ]
+        },
+        {
+          "id": "drug-cyclophosphamide",
+          "label": {
+            "es": "Ciclofosfamida",
+            "en": "Cyclophosphamide"
+          },
+          "description": {
+            "es": "",
+            "en": ""
+          },
+          "source_ids": [
+            "bsr2022"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family-targeted",
+      "label": {
+        "es": "Sintéticos dirigidos",
+        "en": "Targeted synthetic"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "source_ids": [
+        "stir",
+        "valor-skin"
+      ],
+      "children": [
+        {
+          "id": "drug-tofacitinib",
+          "label": {
+            "es": "Tofacitinib",
+            "en": "Tofacitinib"
+          },
+          "description": {
+            "es": "Inhibidor de JAK; estudio exploratorio en enfermedad predominantemente cutánea.",
+            "en": "JAK inhibitor; exploratory study in predominantly cutaneous disease."
+          },
+          "source_ids": [
+            "stir"
+          ]
+        },
+        {
+          "id": "drug-brepocitinib",
+          "label": {
+            "es": "Brepocitinib",
+            "en": "Brepocitinib"
+          },
+          "description": {
+            "es": "Inhibidor de TYK2/JAK1 estudiado en adultos.",
+            "en": "TYK2/JAK1 inhibitor studied in adults."
+          },
+          "source_ids": [
+            "valor-skin"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family-biological",
+      "label": {
+        "es": "Biológicos",
+        "en": "Biological"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "source_ids": [
+        "bsr2022",
+        "rim",
+        "abatacept"
+      ],
+      "children": [
+        {
+          "id": "drug-rituximab",
+          "label": {
+            "es": "Rituximab",
+            "en": "Rituximab"
+          },
+          "description": {
+            "es": "Ensayo con población mixta adulta y juvenil; revisar resultados específicos de dermatomiositis.",
+            "en": "Trial with mixed adult and juvenile populations; review dermatomyositis-specific results."
+          },
+          "source_ids": [
+            "rim"
+          ]
+        },
+        {
+          "id": "drug-abatacept",
+          "label": {
+            "es": "Abatacept",
+            "en": "Abatacept"
+          },
+          "description": {
+            "es": "Estudiado en miopatías inflamatorias; comprobar el subgrupo de dermatomiositis.",
+            "en": "Studied in inflammatory myopathies; check the dermatomyositis subgroup."
+          },
+          "source_ids": [
+            "abatacept",
+            "bsr2022"
+          ]
+        }
+      ]
+    }
+  ],
+  "comparators": [
+    {
+      "id": "comparison-placebo",
+      "label": {
+        "es": "Placebo",
+        "en": "Placebo"
+      },
+      "description": {
+        "es": "Precisar tratamiento de base compartido y periodo de comparación.",
+        "en": "Specify shared background treatment and comparison period."
+      },
+      "source_ids": [
+        "rim",
+        "abatacept",
+        "valor-skin"
+      ],
+      "controlled_code": "PLACEBO",
+      "children": []
+    },
+    {
+      "id": "comparison-usual-care",
+      "label": {
+        "es": "Tratamiento habitual",
+        "en": "Usual care"
+      },
+      "description": {
+        "es": "Definir fármacos de base y glucocorticoides permitidos.",
+        "en": "Define background drugs and permitted glucocorticoids."
+      },
+      "source_ids": [
+        "bsr2022"
+      ],
+      "controlled_code": "CUIDADO_HABITUAL",
+      "children": []
+    },
+    {
+      "id": "comparison-active",
+      "label": {
+        "es": "Otro inmunosupresor activo",
+        "en": "Another active immunosuppressant"
+      },
+      "description": {
+        "es": "Precisar el fármaco o combinación elegidos como comparador.",
+        "en": "Specify the drug or combination chosen as comparator."
+      },
+      "source_ids": [
+        "bsr2022"
+      ],
+      "controlled_code": "OTROS_FARMACOLOGICOS",
+      "children": []
+    },
+    {
+      "id": "comparison-uncontrolled",
+      "label": {
+        "es": "Sin grupo comparador",
+        "en": "No comparator group"
+      },
+      "description": {
+        "es": "Opción solo si se admiten diseños no comparativos; el cambio basal no prueba causalidad.",
+        "en": "Only if non-comparative designs are eligible; baseline change does not establish causality."
+      },
+      "source_ids": [
+        "stir"
+      ],
+      "controlled_code": "SIN_COMPARACION",
+      "children": []
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "outcome-global-response",
+      "label": {
+        "es": "Respuesta clínica global",
+        "en": "Global clinical response"
+      },
+      "description": {
+        "es": "IMACS DOI o Total Improvement Score (TIS); concretar criterio y seguimiento.",
+        "en": "IMACS DOI or Total Improvement Score (TIS); specify criterion and follow-up."
+      },
+      "source_ids": [
+        "stir",
+        "rim"
+      ]
+    },
+    {
+      "id": "outcome-strength",
+      "label": {
+        "es": "Fuerza muscular",
+        "en": "Muscle strength"
+      },
+      "description": {
+        "es": "Prueba muscular manual; concretar escala, por ejemplo MMT-8, y momento.",
+        "en": "Manual muscle testing; specify scale, for example MMT-8, and timing."
+      },
+      "source_ids": [
+        "abatacept"
+      ]
+    },
+    {
+      "id": "outcome-skin",
+      "label": {
+        "es": "Actividad cutánea",
+        "en": "Cutaneous disease activity"
+      },
+      "description": {
+        "es": "CDASI o CDASI-A; distinguir cambio continuo y respuesta categórica.",
+        "en": "CDASI or CDASI-A; distinguish continuous change from categorical response."
+      },
+      "source_ids": [
+        "stir",
+        "valor-skin"
+      ]
+    },
+    {
+      "id": "outcome-muscle-enzymes",
+      "label": {
+        "es": "Enzimas musculares",
+        "en": "Muscle enzymes"
+      },
+      "description": {
+        "es": "CK y otras enzimas, si procede; desenlace bioquímico, no equivalente a beneficio clínico.",
+        "en": "CK and other enzymes when relevant; a biochemical outcome, not equivalent to clinical benefit."
+      },
+      "source_ids": [
+        "stir"
+      ]
+    },
+    {
+      "id": "outcome-function",
+      "label": {
+        "es": "Función física y discapacidad",
+        "en": "Physical function and disability"
+      },
+      "description": {
+        "es": "Definir instrumento y población; considerar HAQ-DI o su versión pediátrica si corresponde.",
+        "en": "Define instrument and population; consider HAQ-DI or its paediatric version where appropriate."
+      },
+      "source_ids": [
+        "abatacept"
+      ]
+    },
+    {
+      "id": "outcome-steroids",
+      "label": {
+        "es": "Reducción de glucocorticoides",
+        "en": "Glucocorticoid reduction"
+      },
+      "description": {
+        "es": "Dosis, suspensión o reducción manteniendo respuesta; concretar definición.",
+        "en": "Dose, discontinuation or reduction with maintained response; specify definition."
+      },
+      "source_ids": [
+        "bsr2022",
+        "valor-skin"
+      ]
+    },
+    {
+      "id": "outcome-itch",
+      "label": {
+        "es": "Prurito",
+        "en": "Itch"
+      },
+      "description": {
+        "es": "Intensidad del prurito; por ejemplo PP-NRS.",
+        "en": "Itch severity; for example PP-NRS."
+      },
+      "source_ids": [
+        "valor-skin"
+      ]
+    },
+    {
+      "id": "outcome-skin-qol",
+      "label": {
+        "es": "Calidad de vida relacionada con la piel",
+        "en": "Skin-related quality of life"
+      },
+      "description": {
+        "es": "Por ejemplo Skindex-16; no confundir con calidad de vida general.",
+        "en": "For example Skindex-16; distinguish from general quality of life."
+      },
+      "source_ids": [
+        "valor-skin"
+      ]
+    },
+    {
+      "id": "outcome-ae",
+      "label": {
+        "es": "Eventos adversos",
+        "en": "Adverse events"
+      },
+      "description": {
+        "es": "Participantes con uno o más eventos; precisar periodo y definiciones.",
+        "en": "Participants with one or more events; specify period and definitions."
+      },
+      "source_ids": [
+        "stir",
+        "rim",
+        "abatacept"
+      ]
+    },
+    {
+      "id": "outcome-sae",
+      "label": {
+        "es": "Eventos adversos graves",
+        "en": "Serious adverse events"
+      },
+      "description": {
+        "es": "Separar gravedad regulatoria e intensidad; especificar definición.",
+        "en": "Distinguish regulatory seriousness from severity; specify definition."
+      },
+      "source_ids": [
+        "rim",
+        "abatacept"
+      ]
+    },
+    {
+      "id": "outcome-infection",
+      "label": {
+        "es": "Infecciones e infecciones graves",
+        "en": "Infections and serious infections"
+      },
+      "description": {
+        "es": "Desglosar por gravedad y, si procede, por tipo de infección.",
+        "en": "Separate by seriousness and, where relevant, infection type."
+      },
+      "source_ids": [
+        "valor-skin"
+      ]
+    },
+    {
+      "id": "outcome-withdrawal",
+      "label": {
+        "es": "Suspensión por eventos adversos",
+        "en": "Discontinuation due to adverse events"
+      },
+      "description": {
+        "es": "Participantes que suspenden el tratamiento debido a eventos adversos.",
+        "en": "Participants discontinuing treatment because of adverse events."
+      },
+      "source_ids": [
+        "abatacept"
+      ]
+    }
+  ]
+}

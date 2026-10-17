@@ -11,12 +11,12 @@ Produce an editable UTF-8 `.pico-catalog.json` file containing selectable propos
 
 Read [catalogue contract](references/catalog-contract.md) and [JSON Schema](references/pico-variable-catalog.schema.json) before generating a file. Use [structure example](references/structure-example.pico-catalog.json) only to understand the shape; it contains fictional variables.
 
-The catalogue schema 0.1.0 is imported by PICO Creator 1.1.0 and later. The editable PICO document uses its own schema 0.2.0. Do not claim a generated catalogue was tested in the application unless that particular file was actually tested. Distribute this entire skill folder with its references.
+The catalogue schema 0.2.0 (English codes) is imported by PICO Creator 1.2.0 and later; older 0.1.0 catalogues (Spanish codes) are migrated on import. The editable PICO document uses its own schema 1.0.0. Do not claim a generated catalogue was tested in the application unless that particular file was actually tested. Distribute this entire skill folder with its references.
 
 ## Establish the clinical scope
 
 1. Extract the preliminary clinical question, condition, intervention/test/factor and question type.
-2. Match `question_type` to `intervencion`, `diagnostico`, `pronostico` or `otras`.
+2. Match `question_type` to `intervention`, `diagnostic`, `prognosis` or `other`.
 3. Preserve the population given by the user. Do not silently limit an unspecified population to adults, or merge adult and juvenile disease. Record unresolved age, subtype and organ-involvement restrictions in bilingual `population_notes`.
 4. Ask only when ambiguity would materially change the catalogue. Otherwise state the working scope and record limitations.
 5. Generate intervention/test/factor options, comparators and outcome names with definitions. Do not add study-design restrictions, minimum sample sizes, publication criteria, outcome importance scores, treatment rankings or effect estimates.

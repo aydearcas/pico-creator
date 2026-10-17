@@ -1,4 +1,4 @@
-# PICO Creator 1.1.0
+# PICO Creator 1.2.0
 
 ## Quick start
 
@@ -27,7 +27,7 @@ The toolbar targets the last focused rich-text field. Strikethrough and colour a
 
 ## Files and recovery
 
-The canonical `.pico.json` file uses `format: pico-document`, schema 0.1.0, and preserves structure, IDs, order, rich formatting, thresholds and metadata. Open accepts this JSON, not automatic conversion from PDF/DOCX. Unknown schemas and invalid structures are rejected rather than silently stripped.
+The canonical `.pico.json` file uses `format: pico-document`, schema 1.0.0 (English keys and codes), and preserves structure, IDs, order, rich formatting, thresholds and metadata. Open accepts this JSON, not automatic conversion from PDF/DOCX. Files with schema 0.1.0 or 0.2.0 (Spanish keys and codes) are migrated on open without changing content or IDs. Unknown schemas and invalid structures are rejected rather than silently stripped.
 
 Opening the HTML directly uses download-based saving. On localhost, browsers supporting File System Access can use a native file picker and save back to the same file; other browsers download the JSON. A download does not confirm the file's final directory.
 
@@ -85,4 +85,4 @@ Catalogue import is available in version 1.1.0. The editor has Import catalogue 
 
 Inside the editor, import a bilingual .pico-catalog.json file and turn on Show preloaded variables. Dropdowns add whole families or individual candidates as editable fields. Hiding suggestions preserves selections; changing language translates the options and leaves previously authored content intact.
 
-Try dermatomyositis loads a non-exhaustive built-in example. Clinical context and sources provides the example question, scope and source limitations; Download example JSON saves its catalogue. PICO schema 0.2.0 embeds the catalogue registry and selection provenance, including drafts and undo. Older 0.1.0 documents remain readable. Exports contain selected criteria only.
+Try dermatomyositis loads a non-exhaustive built-in example. Clinical context and sources provides the example question, scope and source limitations; Download example JSON saves its catalogue. PICO schema 1.0.0 embeds the catalogue registry and selection provenance, including drafts and undo. Older 0.1.0 and 0.2.0 documents, and 0.1.0 catalogues, are migrated on open. Exports contain selected criteria only.

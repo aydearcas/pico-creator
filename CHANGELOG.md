@@ -1,3 +1,11 @@
+# 1.2.0 — 2026-10-17
+
+- PICO document schema 1.0.0: JSON keys and codes in English (for example `clinical_question`, `study_designs`, `RCT`, `USUAL_CARE`). The interface and exports stay bilingual.
+- Candidate catalogue schema 0.2.0: question types `intervention`, `diagnostic`, `prognosis`, `other` and English comparator codes.
+- Documents with schema 0.1.0 or 0.2.0 and catalogues with schema 0.1.0 are migrated when opened or imported, without changing content or IDs (`src/migrate.js`). Drafts saved by earlier versions are migrated too.
+- The current-RS JSON projection uses the English keys of `proyecto-rs` (`label`, `question_type`, `text`, `components`, `criteria_version`, `source`, `version_history`).
+- Old-format examples kept as test fixtures in `tests/fixtures/`.
+
 # 1.0.1 — 2026-10-15
 
 - Main intervention and factor categories are bold; nested items remain indented and regular weight.
