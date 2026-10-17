@@ -1,0 +1,36 @@
+name: Verify and build PICO Creator
+on:
+  push:
+    branches: [main]
+    paths: ['src/**', 'tests/**', 'examples/**', 'skills/**', '*schema.json', 'package*.json', '.github/workflows/build.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: npm test
+      - name: Export verified public build
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64,gzip,hashlib,pathlib
+          data=pathlib.Path('dist/index.html').read_bytes()
+          digest=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+          print('PICO_BUILD_SHA:'+digest)
+          encoded=base64.b64encode(gzip.compress(data,mtime=0)).decode()
+          for i in range(0,len(encoded),8000): print('PICO_BUILD_PART:'+encoded[i:i+8000])
+          PY
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: pico-creator-build
+          path: dist/index.html
+          retention-days: 7
