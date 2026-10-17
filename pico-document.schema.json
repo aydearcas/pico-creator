@@ -1,0 +1,628 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pico-creator.local/schemas/pico-document-0.1.0.json",
+  "title": "PICO document 0.1.0",
+  "description": "Portable, rich clinical question. UTF-8; one question per file.",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "pico-document"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "text_format": {
+      "const": "richtext-v1"
+    },
+    "documento_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision_documento": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "vinculacion_rs": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "pico": {
+      "type": "object",
+      "properties": {
+        "numero": {
+          "type": "string"
+        },
+        "seccion": {
+          "$ref": "#/$defs/rich"
+        },
+        "pregunta_clinica": {
+          "$ref": "#/$defs/rich"
+        },
+        "tipo_pregunta": {
+          "type": "object",
+          "properties": {
+            "codigo": {
+              "enum": [
+                "INTERVENCION",
+                "SEGURIDAD",
+                "DIAGNOSTICO",
+                "PRONOSTICO",
+                "PREDICCION",
+                "ETIOLOGIA",
+                "EXPOSICION",
+                "PREVALENCIA",
+                "CUALITATIVA",
+                "OTRA"
+              ]
+            },
+            "plantilla": {
+              "enum": [
+                "intervencion",
+                "diagnostico",
+                "pronostico",
+                "otras"
+              ]
+            },
+            "plantilla_version": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "codigo",
+            "plantilla",
+            "plantilla_version"
+          ]
+        },
+        "version_criterios": {
+          "type": "string"
+        },
+        "poblacion": {
+          "type": "object",
+          "properties": {
+            "texto": {
+              "$ref": "#/$defs/rich"
+            },
+            "subpoblaciones": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "texto": {
+                    "$ref": "#/$defs/rich"
+                  }
+                },
+                "required": [
+                  "id",
+                  "texto"
+                ]
+              }
+            }
+          },
+          "required": [
+            "texto",
+            "subpoblaciones"
+          ]
+        },
+        "intervenciones": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "$ref": "#/$defs/free"
+          }
+        },
+        "comparadores": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "$ref": "#/$defs/comparator"
+          }
+        },
+        "outcomes": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "$ref": "#/$defs/outcome"
+          }
+        },
+        "tipos_estudio": {
+          "type": "object",
+          "properties": {
+            "catalogo_version": {
+              "type": "string"
+            },
+            "incluidos": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "$ref": "#/$defs/design"
+              }
+            },
+            "excluidos": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "$ref": "#/$defs/design"
+              }
+            },
+            "resto_excluido_aplicado": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "catalogo_version",
+            "incluidos",
+            "excluidos",
+            "resto_excluido_aplicado"
+          ]
+        },
+        "tipos_publicacion": {
+          "type": "object",
+          "properties": {
+            "modo": {
+              "enum": [
+                null,
+                "SOLO_COMPLETOS",
+                "COMPLETOS_Y_OTROS"
+              ]
+            },
+            "adicionales": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "$ref": "#/$defs/publication"
+              }
+            },
+            "condiciones": {
+              "$ref": "#/$defs/rich"
+            }
+          },
+          "required": [
+            "modo",
+            "adicionales",
+            "condiciones"
+          ]
+        },
+        "notas_revisores": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "required": [
+        "numero",
+        "seccion",
+        "pregunta_clinica",
+        "tipo_pregunta",
+        "version_criterios",
+        "poblacion",
+        "intervenciones",
+        "comparadores",
+        "outcomes",
+        "tipos_estudio",
+        "tipos_publicacion",
+        "notas_revisores"
+      ]
+    }
+  },
+  "required": [
+    "format",
+    "schema_version",
+    "text_format",
+    "documento_id",
+    "revision_documento",
+    "created_at",
+    "updated_at",
+    "vinculacion_rs",
+    "pico"
+  ],
+  "$defs": {
+    "node": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "doc",
+            "paragraph",
+            "text",
+            "hardBreak",
+            "bulletList",
+            "listItem"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "$ref": "#/$defs/node"
+          }
+        },
+        "marks": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "$ref": "#/$defs/mark"
+          }
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "mark": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "bold",
+            "italic",
+            "strike",
+            "highlight",
+            "textStyle"
+          ]
+        },
+        "attrs": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "rich": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/node"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "doc"
+            }
+          },
+          "required": [
+            "type",
+            "content"
+          ]
+        }
+      ]
+    },
+    "child": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "texto": {
+          "$ref": "#/$defs/rich"
+        },
+        "hijos": {
+          "type": "array",
+          "maxItems": 0
+        }
+      },
+      "required": [
+        "id",
+        "texto",
+        "hijos"
+      ]
+    },
+    "free": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "texto": {
+          "$ref": "#/$defs/rich"
+        },
+        "hijos": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "$ref": "#/$defs/child"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "texto",
+        "hijos"
+      ]
+    },
+    "design": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "codigo": {
+          "enum": [
+            "CUALQUIER_ESTUDIO",
+            "REVISION_SISTEMATICA",
+            "METAANALISIS",
+            "ECA",
+            "ENSAYO_NO_ALEATORIZADO",
+            "OBSERVACIONAL_CUALQUIERA",
+            "OBSERVACIONAL_COMPARATIVO",
+            "OBSERVACIONAL_NO_COMPARATIVO",
+            "SERIE_CASOS",
+            "CASO",
+            "EXACTITUD_DIAGNOSTICA",
+            "MODELO_PREDICCION",
+            "CUALITATIVO",
+            "OTRO",
+            ""
+          ]
+        },
+        "n_minima": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "condiciones": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "required": [
+        "id",
+        "codigo",
+        "n_minima",
+        "condiciones"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "codigo": {
+                "enum": [
+                  "REVISION_SISTEMATICA",
+                  "METAANALISIS"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "n_minima": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "comparator": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "modo": {
+              "const": "LIBRE"
+            },
+            "papel": {
+              "enum": [
+                "COMPARADOR",
+                "PATRON_REFERENCIA",
+                "OTRO"
+              ]
+            },
+            "texto": {
+              "$ref": "#/$defs/rich"
+            },
+            "hijos": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "$ref": "#/$defs/child"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "modo",
+            "papel",
+            "texto",
+            "hijos"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "modo": {
+              "const": "CONTROLADO"
+            },
+            "papel": {
+              "enum": [
+                "COMPARADOR",
+                "PATRON_REFERENCIA",
+                "OTRO"
+              ]
+            },
+            "codigo": {
+              "enum": [
+                "PLACEBO",
+                "CUIDADO_HABITUAL",
+                "CUALQUIER_COMPARADOR",
+                "OTROS_FARMACOLOGICOS",
+                "SIMULADA",
+                "SIN_COMPARACION",
+                "PATRON_REFERENCIA",
+                "DIAGNOSTICO_CLINICO",
+                "OTRA_PRUEBA",
+                "PRUEBA_HABITUAL",
+                "SIN_COMPARACION_PRUEBAS",
+                "AUSENCIA_FACTOR",
+                "NIVEL_REFERENCIA",
+                "OTRO_FACTOR_MODELO",
+                "SEGUIMIENTO_HABITUAL",
+                ""
+              ]
+            },
+            "especificacion": {
+              "$ref": "#/$defs/rich"
+            },
+            "hijos": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "$ref": "#/$defs/child"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "modo",
+            "papel",
+            "codigo",
+            "especificacion",
+            "hijos"
+          ]
+        }
+      ]
+    },
+    "outcome": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nombre": {
+          "$ref": "#/$defs/rich"
+        },
+        "descripcion": {
+          "$ref": "#/$defs/rich"
+        },
+        "detalles": {
+          "type": "object",
+          "properties": {
+            "importancia": {
+              "enum": [
+                null,
+                "CRITICO",
+                "IMPORTANTE",
+                "NO_IMPORTANTE"
+              ]
+            },
+            "puntuacion": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1,
+              "maximum": 9
+            },
+            "momentos": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "type": "string"
+              }
+            },
+            "instrumentos": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "type": "string"
+              }
+            },
+            "umbrales": {
+              "type": "array",
+              "maxItems": 1000,
+              "items": {
+                "type": "string"
+              }
+            },
+            "diferencia_minima_importante": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "importancia",
+            "puntuacion",
+            "momentos",
+            "instrumentos",
+            "umbrales",
+            "diferencia_minima_importante"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "nombre",
+        "descripcion",
+        "detalles"
+      ]
+    },
+    "publication": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "codigo": {
+          "enum": [
+            "",
+            "ABSTRACT",
+            "CARTA",
+            "TESIS",
+            "INFORME",
+            "PREPRINT",
+            "OTRA",
+            "CUALQUIERA"
+          ]
+        },
+        "aclaracion": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "required": [
+        "id",
+        "codigo",
+        "aclaracion"
+      ]
+    }
+  }
+}

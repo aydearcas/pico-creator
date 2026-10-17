@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {JSDOM} from 'jsdom';
+import {Editor} from '@tiptap/core';
+import StarterKit from '@tiptap/starter-kit';
+import Highlight from '@tiptap/extension-highlight';
+import {TextStyle,Color} from '@tiptap/extension-text-style';
+import {rich,normalizeRich,normalizeColor} from '../src/model.js';
+const dom=new JSDOM('<!doctype html><div id="editor"></div>',{pretendToBeVisual:true});
+for(const key of ['window','document','navigator','Node','Element','HTMLElement','MutationObserver','getComputedStyle','requestAnimationFrame','cancelAnimationFrame'])Object.defineProperty(globalThis,key,{configurable:true,value:typeof dom.window[key]==='function'&&['getComputedStyle','requestAnimationFrame','cancelAnimationFrame'].includes(key)?dom.window[key].bind(dom.window):dom.window[key]});
+dom.window.Range.prototype.getBoundingClientRect=()=>({top:0,bottom:0,left:0,right:0,width:0,height:0});
+dom.window.Range.prototype.getClientRects=()=>[];
+const extensions=[StarterKit.configure({heading:false,blockquote:false,code:false,codeBlock:false,horizontalRule:false,orderedList:false,link:false,underline:false}),TextStyle,Color,Highlight.configure({multicolor:true})];
+test('Colour and highlight apply only to selected text and survive JSON round trip',()=>{const ed=new Editor({element:document.getElementById('editor'),extensions,content:rich('alpha beta')});ed.commands.setTextSelection({from:1,to:6});ed.chain().setColor('#255ca8').setHighlight({color:'#fff19c'}).run();const json=ed.getJSON();const pieces=json.content[0].content;assert.equal(pieces[0].text,'alpha');assert(pieces[0].marks.some(x=>x.type==='textStyle'&&x.attrs.color==='#255ca8'));assert(pieces[0].marks.some(x=>x.type==='highlight'&&x.attrs.color==='#fff19c'));assert.equal(pieces[1].marks,undefined);const persisted=normalizeRich(JSON.parse(JSON.stringify(json)));assert.deepEqual(persisted,JSON.parse(JSON.stringify(json)));ed.destroy();});
+test('Collapsed selection sets the formatting for subsequent typing, then clear removes it',()=>{const ed=new Editor({element:document.getElementById('editor'),extensions,content:rich('alpha')});ed.commands.setTextSelection(6);ed.chain().setColor('#b22838').setHighlight({color:'#bde9b9'}).insertContent(' beta').run();let content=ed.getJSON().content[0].content;assert(content.at(-1).marks.some(m=>m.type==='highlight'));ed.chain().unsetColor().unsetHighlight().insertContent(' gamma').run();content=normalizeRich(ed.getJSON()).content[0].content;assert.equal(content.at(-1).marks,undefined);ed.destroy();});
+test('Word-like pasted RGB colours are normalised to the file contract',()=>{assert.equal(normalizeColor('rgb(49, 94, 168)'),'#315ea8');assert.equal(normalizeColor('#abc'),'#aabbcc');const n=rich('test');n.content[0].content[0].marks=[{type:'textStyle',attrs:{color:'rgb(49, 94, 168)'}}];assert.equal(normalizeRich(n).content[0].content[0].marks[0].attrs.color,'#315ea8');assert.equal(normalizeColor('url(javascript:evil)'),null);});
+test.after(()=>dom.window.close());

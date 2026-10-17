@@ -1,0 +1,6 @@
+node_modules/
+qa/
+.build-venv/
+.desktop-build/
+desktop-output/
+__pycache__/

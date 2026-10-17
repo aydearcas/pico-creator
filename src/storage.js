@@ -1,0 +1,8 @@
+export function setting(key,fallback){try{return localStorage.getItem('pico-'+key)||fallback;}catch{return fallback;}}
+export function setSetting(key,value){try{localStorage.setItem('pico-'+key,value);}catch{}}
+let dbPromise;
+function database(){if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{if(!globalThis.indexedDB){reject(Error('No IndexedDB'));return;}const r=indexedDB.open('pico-creator-v1',1);r.onupgradeneeded=()=>r.result.createObjectStore('drafts');r.onerror=()=>reject(r.error);r.onsuccess=()=>resolve(r.result);});return dbPromise;}
+export async function readDraft(){try{const db=await database();return await new Promise((resolve,reject)=>{const r=db.transaction('drafts').objectStore('drafts').get('current');r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>reject(r.error);});}catch{try{return JSON.parse(localStorage.getItem('pico-draft')||'null');}catch{return null;}}}
+export async function writeDraft(d){try{const db=await database();await new Promise((resolve,reject)=>{const tx=db.transaction('drafts','readwrite');tx.objectStore('drafts').put(d,'current');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});return true;}catch{try{localStorage.setItem('pico-draft',JSON.stringify(d));return true;}catch{return false;}}}
+export function download(blob,name){const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
+export const fileName=(d,extension)=>`PICO-${(d.pico.numero||'draft').replace(/[^a-zA-Z0-9_-]/g,'_')}${extension}`;
