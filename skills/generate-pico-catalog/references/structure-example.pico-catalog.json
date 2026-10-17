@@ -1,0 +1,85 @@
+{
+  "format": "pico-variable-catalog",
+  "schema_version": "0.1.0",
+  "catalog_id": "structure-example",
+  "title": {
+    "es": "Ejemplo de estructura; sin contenido clínico",
+    "en": "Structure example; no clinical content"
+  },
+  "question_type": "intervencion",
+  "clinical_question": {
+    "es": "Pregunta ficticia para comprobar la estructura del catálogo.",
+    "en": "Fictional question used to check the catalogue structure."
+  },
+  "population_notes": {
+    "es": "Sin población clínica definida.",
+    "en": "No clinical population defined."
+  },
+  "verification": {
+    "status": "unverified",
+    "checked_on": null,
+    "limitations": {
+      "es": "Variables ficticias. No utilizar como propuestas clínicas.",
+      "en": "Fictional variables. Do not use as clinical proposals."
+    }
+  },
+  "sources": [],
+  "interventions": [
+    {
+      "id": "intervention-family-a",
+      "label": {
+        "es": "Familia A",
+        "en": "Family A"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "source_ids": [],
+      "children": [
+        {
+          "id": "intervention-a1",
+          "label": {
+            "es": "Intervención A1",
+            "en": "Intervention A1"
+          },
+          "description": {
+            "es": "",
+            "en": ""
+          },
+          "source_ids": []
+        }
+      ]
+    }
+  ],
+  "comparators": [
+    {
+      "id": "comparator-a",
+      "label": {
+        "es": "Comparador A",
+        "en": "Comparator A"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "source_ids": [],
+      "controlled_code": null,
+      "children": []
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "outcome-a",
+      "label": {
+        "es": "Desenlace A",
+        "en": "Outcome A"
+      },
+      "description": {
+        "es": "Descripción ilustrativa del desenlace.",
+        "en": "Illustrative outcome description."
+      },
+      "source_ids": []
+    }
+  ]
+}

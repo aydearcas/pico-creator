@@ -73,3 +73,9 @@ Automated checks cover the data model, catalogues, reordering, rich-text formatt
 ## Changes in 1.0.1
 
 Main intervention categories are bold and subitems indented, including exports. Population and comparator groups are bold when they contain subcategories. Any study design is available in every template, with an optional minimum n. Exclude remaining designs never inserts the catch-all option or infers exclusions from it. Remove all clears each main list, either design list, or both design lists with confirmation and undo. Older JSON documents remain valid; documents using the new design option require version 1.0.1 or later.
+
+## Skill for preloaded variable catalogues
+
+The source package includes [generate-pico-catalog](skills/generate-pico-catalog/SKILL.md). Share the complete folder with an assistant supporting skills, or provide its instructions and references as context. It generates a `.pico-catalog.json` file with Spanish/English labels and descriptions, family/child hierarchy and actually consulted sources.
+
+The contract is a draft; application version 1.0.1 does not yet import catalogues. The planned editor has Import catalogue and a visibility switch for intervention, comparator and outcome dropdowns. Selected suggestions become editable document content and remain when the switch is off. The bundled example is fictional and illustrates structure only.

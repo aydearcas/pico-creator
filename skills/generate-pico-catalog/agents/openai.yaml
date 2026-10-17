@@ -1,0 +1,4 @@
+interface:
+  display_name: "PICO Catalogue Generator"
+  short_description: "Generate bilingual candidate variables for PICO Creator"
+  default_prompt: "Use $generate-pico-catalog to generate a Spanish/English candidate catalogue for PICO Creator from my preliminary clinical question."

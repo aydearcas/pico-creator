@@ -77,3 +77,9 @@ npm run build
 La compilación genera `dist/index.html`, autocontenido. Copia ese archivo como `PICO-Creator.html` para distribuirlo. El servidor de desarrollo es una herramienta opcional para desarrolladores, no necesaria para usar el HTML distribuido.
 
 Se verifican esquema y modelo, catálogos, reordenación, formatos, JSON y documentos generados con pruebas automatizadas. La prueba visual en un navegador real y la compilación Windows deben realizarse en el equipo de destino; no se declaran verificadas por disponer únicamente de una compilación correcta.
+
+## Skill para generar variables precargadas
+
+Se incluye [generate-pico-catalog](skills/generate-pico-catalog/SKILL.md). Comparte su carpeta completa con un asistente compatible con skills; si no admite ese formato, adjunta las instrucciones y sus referencias como contexto. La skill genera un archivo `.pico-catalog.json` con nombres y descripciones en español e inglés, familias y subelementos, y fuentes realmente consultadas. Su distribución está incluida en el ZIP del código fuente.
+
+El contrato es un borrador. La versión 1.0.1 todavía no importa catálogos. La interfaz prevista tendrá «Importar catálogo» y un interruptor para mostrar desplegables en intervenciones, comparadores y desenlaces. Seleccionar una opción añadirá contenido editable; ocultar los desplegables conservará lo añadido. El ejemplo incluido es ficticio y sirve únicamente para comprobar la estructura.

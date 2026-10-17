@@ -1,0 +1,402 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PICO Creator candidate variable catalogue 0.1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "schema_version",
+    "catalog_id",
+    "title",
+    "question_type",
+    "clinical_question",
+    "population_notes",
+    "verification",
+    "sources",
+    "interventions",
+    "comparators",
+    "outcomes"
+  ],
+  "properties": {
+    "format": {
+      "const": "pico-variable-catalog"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "catalog_id": {
+      "$ref": "#/$defs/id"
+    },
+    "title": {
+      "$ref": "#/$defs/bilingual"
+    },
+    "question_type": {
+      "enum": [
+        "intervencion",
+        "diagnostico",
+        "pronostico",
+        "otras"
+      ]
+    },
+    "clinical_question": {
+      "$ref": "#/$defs/bilingual"
+    },
+    "population_notes": {
+      "$ref": "#/$defs/note"
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "checked_on",
+        "limitations"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "source_reviewed",
+            "partially_reviewed",
+            "unverified"
+          ]
+        },
+        "checked_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "limitations": {
+          "$ref": "#/$defs/note"
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "interventions": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/intervention"
+      }
+    },
+    "comparators": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/comparator"
+      }
+    },
+    "outcomes": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/outcome"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]*$"
+    },
+    "bilingual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "es",
+        "en"
+      ],
+      "properties": {
+        "es": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        }
+      }
+    },
+    "note": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "es",
+        "en"
+      ],
+      "properties": {
+        "es": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 6000
+        },
+        "en": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 6000
+        }
+      }
+    },
+    "leaf": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "description",
+        "source_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "description": {
+          "$ref": "#/$defs/note"
+        },
+        "source_ids": {
+          "type": "array",
+          "maxItems": 50,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "intervention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "description",
+        "source_ids",
+        "children"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "description": {
+          "$ref": "#/$defs/note"
+        },
+        "source_ids": {
+          "type": "array",
+          "maxItems": 50,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "children": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/leaf"
+          }
+        }
+      }
+    },
+    "comparator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "description",
+        "source_ids",
+        "controlled_code",
+        "children"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "description": {
+          "$ref": "#/$defs/note"
+        },
+        "source_ids": {
+          "type": "array",
+          "maxItems": 50,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "controlled_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            null,
+            "PLACEBO",
+            "CUIDADO_HABITUAL",
+            "CUALQUIER_COMPARADOR",
+            "OTROS_FARMACOLOGICOS",
+            "SIMULADA",
+            "SIN_COMPARACION",
+            "PATRON_REFERENCIA",
+            "DIAGNOSTICO_CLINICO",
+            "OTRA_PRUEBA",
+            "PRUEBA_HABITUAL",
+            "SIN_COMPARACION_PRUEBAS",
+            "AUSENCIA_FACTOR",
+            "NIVEL_REFERENCIA",
+            "OTRO_FACTOR_MODELO",
+            "SEGUIMIENTO_HABITUAL"
+          ]
+        },
+        "children": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/leaf"
+          }
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "description",
+        "source_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "description": {
+          "$ref": "#/$defs/note"
+        },
+        "source_ids": {
+          "type": "array",
+          "maxItems": 50,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source_type",
+        "title",
+        "url",
+        "locator",
+        "accessed_on"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "source_type": {
+          "enum": [
+            "public_source",
+            "provided_document"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https?://"
+        },
+        "locator": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1500
+        },
+        "accessed_on": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source_type": {
+                "const": "public_source"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "url": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "const": "source_reviewed"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "sources": {
+            "minItems": 1
+          },
+          "verification": {
+            "properties": {
+              "checked_on": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

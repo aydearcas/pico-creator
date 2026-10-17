@@ -15,3 +15,11 @@ Para crear opcionalmente un ejecutable de escritorio, consulta `desktop/build-wi
 The `docs/` folder contains the standalone web version, ready to publish. In repository **Settings → Pages**, select **Deploy from a branch**, branch **main**, folder **/docs**. No dependency installation or build step is needed.
 
 La carpeta `docs/` contiene la versión web lista para publicar. En **Settings → Pages**, selecciona **Deploy from a branch**, rama **main**, carpeta **/docs**. No necesita instalar dependencias ni compilar.
+
+## Reusable catalogue-generation skill
+
+The package includes [generate-pico-catalog](skills/generate-pico-catalog/SKILL.md), a reusable skill for an LLM to produce Spanish/English candidate variables from a preliminary clinical question. Its folder contains instructions, the draft JSON Schema and a fictional structural example; keep the folder together when sharing it with an assistant. The source ZIP includes this folder.
+
+**Status:** this is the draft catalogue-generation contract. Version 1.0.1 of the application does not yet import these catalogues. The planned editor controls are an Import catalogue action and a visibility switch for per-component dropdowns. Selecting an option will add editable content; turning the switch off will preserve added content.
+
+La skill está incluida en el paquete para generar catálogos bilingües. La importación y los desplegables se implementarán en una próxima versión; el ejemplo incluido solo ilustra la estructura y no contiene propuestas clínicas.
