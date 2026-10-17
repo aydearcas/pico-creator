@@ -9,3 +9,9 @@ Abre **PICO-Creator.html** en el navegador. Todo está incluido: no necesita ins
 For an optional desktop executable, see `desktop/build-windows-exe.cmd` and the language-specific guide. The package includes the build recipe, not a compiled Windows executable.
 
 Para crear opcionalmente un ejecutable de escritorio, consulta `desktop/build-windows-exe.cmd` y la guía en tu idioma. Este paquete incluye el procedimiento de compilación, no un ejecutable Windows ya compilado.
+
+## GitHub Pages
+
+The `docs/` folder contains the standalone web version, ready to publish. In repository **Settings → Pages**, select **Deploy from a branch**, branch **main**, folder **/docs**. No dependency installation or build step is needed.
+
+La carpeta `docs/` contiene la versión web lista para publicar. En **Settings → Pages**, selecciona **Deploy from a branch**, rama **main**, carpeta **/docs**. No necesita instalar dependencias ni compilar.
