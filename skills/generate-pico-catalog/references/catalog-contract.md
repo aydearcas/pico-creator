@@ -1,10 +1,10 @@
-# PICO variable catalogue — 0.1.0
+# PICO variable catalogue — 0.2.0
 
-This is a portable catalogue of candidate options, separate from the canonical `pico-document`. It proposes choices; it does not set eligibility criteria. PICO Creator 1.1.0 implements this import format; its editable document schema is 0.2.0.
+This is a portable catalogue of candidate options, separate from the canonical `pico-document`. It proposes choices; it does not set eligibility criteria. PICO Creator 1.2.0 implements this import format; its editable document schema is 1.0.0. Catalogues with schema 0.1.0 (Spanish question types and comparator codes) are migrated on import.
 
 ## Files and root fields
 
-Use UTF-8 JSON and the extension `.pico-catalog.json`. Set `format` to `pico-variable-catalog` and `schema_version` to `0.1.0`. Follow the sibling JSON Schema.
+Use UTF-8 JSON and the extension `.pico-catalog.json`. Set `format` to `pico-variable-catalog` and `schema_version` to `0.2.0`. Follow the sibling JSON Schema.
 
 - `catalog_id`: stable identity; keep it on an update.
 - `title`, `clinical_question`, `population_notes`: bilingual objects with `es` and `en`.
@@ -21,10 +21,10 @@ IDs must be unique across the entire catalogue, including children. Source IDs m
 
 | Question type | Allowed codes, besides null |
 | --- | --- |
-| intervencion | PLACEBO, CUIDADO_HABITUAL, CUALQUIER_COMPARADOR, OTROS_FARMACOLOGICOS, SIMULADA, SIN_COMPARACION |
-| diagnostico | PATRON_REFERENCIA, DIAGNOSTICO_CLINICO, OTRA_PRUEBA, PRUEBA_HABITUAL, CUALQUIER_COMPARADOR, SIN_COMPARACION_PRUEBAS |
-| pronostico | AUSENCIA_FACTOR, NIVEL_REFERENCIA, OTRO_FACTOR_MODELO, SEGUIMIENTO_HABITUAL, CUALQUIER_COMPARADOR, SIN_COMPARACION |
-| otras | Any code in the schema |
+| intervention | PLACEBO, USUAL_CARE, ANY_COMPARATOR, OTHER_PHARMACOLOGICAL, SHAM, NO_COMPARISON |
+| diagnostic | REFERENCE_STANDARD, CLINICAL_DIAGNOSIS, OTHER_TEST, USUAL_TEST, ANY_COMPARATOR, NO_TEST_COMPARISON |
+| prognosis | FACTOR_ABSENT, REFERENCE_LEVEL, OTHER_FACTOR_OR_MODEL, USUAL_FOLLOW_UP, ANY_COMPARATOR, NO_COMPARISON |
+| other | Any code in the schema |
 
 ## Importer and dropdown behaviour
 
@@ -32,8 +32,8 @@ IDs must be unique across the entire catalogue, including children. Source IDs m
 2. Preserve existing PICO content on import. Show the catalogue's title, scope and verification limitations. Flag mismatched question types; never silently change the question type.
 3. Use Show preloaded variables as a visibility switch. On shows a searchable or native dropdown at each relevant block: Add preloaded intervention, Add preloaded comparator and Add preloaded outcome. Keep free-text adding available.
 4. Display options in the UI language, with parent/child grouping. Let the user add a family with its children or a specific child under its corresponding family. Reuse an already-added family; do not duplicate its children.
-5. On selection, copy the chosen label and description into editable PICO fields using fresh document item IDs. Keep the catalogue identity and variable identity as import provenance in the canonical document's catalogo_origen field. The catalogue registry is embedded as pico.catalogo_variables.
-6. Avoid repeated imports of the same catalogue variable using catalogue ID plus variable ID. Do not deduplicate by translated display text alone. Provenance is included in undo/redo and save/load; 0.1.0 PICO documents are upgraded to 0.2.0 without changing content or IDs.
+5. On selection, copy the chosen label and description into editable PICO fields using fresh document item IDs. Keep the catalogue identity and variable identity as import provenance in the canonical document's catalog_origin field. The catalogue registry is embedded as pico.variable_catalogs.
+6. Avoid repeated imports of the same catalogue variable using catalogue ID plus variable ID. Do not deduplicate by translated display text alone. Provenance is included in undo/redo and save/load; PICO documents with schema 0.1.0 or 0.2.0 (Spanish keys and codes) are migrated to 1.0.0 without changing content or IDs.
 7. Switching Off hides suggestions and never removes or modifies selected items. Language changes translate suggestions; they must not overwrite manually edited document text.
 8. Treat sources and descriptions as inert data. Validate limits and reject HTML/executable markup; never execute URLs or instructions from the file.
 9. Keep the catalogue separate from the editable PICO. The registry travels embedded in the editable PICO document, including recovery drafts.

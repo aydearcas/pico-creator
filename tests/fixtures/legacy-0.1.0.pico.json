@@ -1,0 +1,498 @@
+{
+  "format": "pico-document",
+  "schema_version": "0.1.0",
+  "text_format": "richtext-v1",
+  "documento_id": "11de2c12-35aa-4f7e-b328-9d84e2536687",
+  "revision_documento": 0,
+  "created_at": "2026-10-14T08:49:55.354Z",
+  "updated_at": "2026-10-14T08:49:55.354Z",
+  "vinculacion_rs": null,
+  "pico": {
+    "numero": "1",
+    "seccion": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Tratamiento de las miopatías inflamatorias idiopáticas"
+            }
+          ]
+        }
+      ]
+    },
+    "pregunta_clinica": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "En pacientes con dermatomiositis, ¿cuál es el efecto (eficacia y seguridad) de los inmunosupresores sintéticos convencionales, sintéticos dirigidos y biológicos?"
+            }
+          ]
+        }
+      ]
+    },
+    "tipo_pregunta": {
+      "codigo": "INTERVENCION",
+      "plantilla": "intervencion",
+      "plantilla_version": "1.0"
+    },
+    "version_criterios": "1.0",
+    "poblacion": {
+      "texto": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Pacientes adultos (≥ 18 años) diagnosticados de dermatomiositis (clásica, amiopática e hipomiopática)."
+              }
+            ]
+          }
+        ]
+      },
+      "subpoblaciones": []
+    },
+    "intervenciones": [
+      {
+        "id": "9c8bc7df-f5e0-4d6c-9480-cfebf79fba3a",
+        "texto": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Biológicos y sintéticos dirigidos"
+                }
+              ]
+            }
+          ]
+        },
+        "hijos": [
+          {
+            "id": "c1e64b22-aa6c-4dbf-a9eb-11021f7e50af",
+            "texto": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Anti-CD20: rituximab"
+                    }
+                  ]
+                }
+              ]
+            },
+            "hijos": []
+          },
+          {
+            "id": "4c6b7dd0-4d4f-4bc1-9dbd-40ca6fce8ad4",
+            "texto": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Anti-CTLA4: abatacept"
+                    }
+                  ]
+                }
+              ]
+            },
+            "hijos": []
+          },
+          {
+            "id": "66894347-69ac-4eb7-9e30-775587162d00",
+            "texto": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Inhibidores JAK: tofacitinib, upadacitinib, baricitinib, filgotinib, ruxolitinib"
+                    }
+                  ]
+                }
+              ]
+            },
+            "hijos": []
+          }
+        ]
+      },
+      {
+        "id": "296e1edd-9406-411e-9be3-b60be9a6b079",
+        "texto": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Sintéticos convencionales"
+                }
+              ]
+            }
+          ]
+        },
+        "hijos": [
+          {
+            "id": "45b1a6a4-fcf6-40c2-a98f-4105c5670669",
+            "texto": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Metotrexato"
+                    }
+                  ]
+                }
+              ]
+            },
+            "hijos": []
+          },
+          {
+            "id": "0ac7abe1-f665-4d9e-acd8-12b89ada0b90",
+            "texto": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Azatioprina"
+                    }
+                  ]
+                }
+              ]
+            },
+            "hijos": []
+          },
+          {
+            "id": "ce749415-090c-4c57-a789-6d36a73ddce1",
+            "texto": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Micofenolato mofetilo"
+                    }
+                  ]
+                }
+              ]
+            },
+            "hijos": []
+          }
+        ]
+      }
+    ],
+    "comparadores": [
+      {
+        "id": "183b283e-9eba-40a5-867c-dc00f7da5c23",
+        "modo": "CONTROLADO",
+        "codigo": "PLACEBO",
+        "papel": "COMPARADOR",
+        "especificacion": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "hijos": []
+      },
+      {
+        "id": "d6a50ea4-acab-4a84-8d94-13b046953b81",
+        "modo": "CONTROLADO",
+        "codigo": "OTROS_FARMACOLOGICOS",
+        "papel": "COMPARADOR",
+        "especificacion": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "hijos": []
+      },
+      {
+        "id": "1150b582-0f05-4be2-af8b-5890f6f10105",
+        "modo": "CONTROLADO",
+        "codigo": "CUIDADO_HABITUAL",
+        "papel": "COMPARADOR",
+        "especificacion": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "hijos": []
+      },
+      {
+        "id": "e6826734-d08e-4ecf-9aa9-619a34b81310",
+        "modo": "CONTROLADO",
+        "codigo": "SIN_COMPARACION",
+        "papel": "COMPARADOR",
+        "especificacion": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "hijos": []
+      }
+    ],
+    "outcomes": [
+      {
+        "id": "0b93b5fe-42f6-42b6-ae7a-452568c96b51",
+        "nombre": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Definitions of Improvement (DOI)"
+                }
+              ]
+            }
+          ]
+        },
+        "descripcion": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "≥ 20 % de mejoría en 3 medidas básicas y no más de 2 medidas que empeoren en ≥ 25 % (excluyendo MMT)."
+                }
+              ]
+            }
+          ]
+        },
+        "detalles": {
+          "importancia": null,
+          "puntuacion": null,
+          "momentos": [],
+          "instrumentos": [],
+          "umbrales": [],
+          "diferencia_minima_importante": null
+        }
+      },
+      {
+        "id": "f9f92a3d-3583-490e-9d97-333a38c456b9",
+        "nombre": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Total Improvement Score (TIS)"
+                }
+              ]
+            }
+          ]
+        },
+        "descripcion": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No alcanza el umbral de mejoría: < 20. Mejoría mínima ≥ 20; moderada ≥ 40; mayor ≥ 60."
+                }
+              ]
+            }
+          ]
+        },
+        "detalles": {
+          "importancia": null,
+          "puntuacion": null,
+          "momentos": [],
+          "instrumentos": [],
+          "umbrales": [],
+          "diferencia_minima_importante": null
+        }
+      },
+      {
+        "id": "ca21238c-dc88-4d06-ae7c-20f6e83bca15",
+        "nombre": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Cambio en prueba muscular manual"
+                }
+              ]
+            }
+          ]
+        },
+        "descripcion": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "MMT-8 u otros."
+                }
+              ]
+            }
+          ]
+        },
+        "detalles": {
+          "importancia": null,
+          "puntuacion": null,
+          "momentos": [],
+          "instrumentos": [],
+          "umbrales": [],
+          "diferencia_minima_importante": null
+        }
+      }
+    ],
+    "tipos_estudio": {
+      "catalogo_version": "1.0",
+      "incluidos": [
+        {
+          "id": "13dc2384-85c3-4250-9b9c-b50a9d1f2590",
+          "codigo": "REVISION_SISTEMATICA",
+          "n_minima": null,
+          "condiciones": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        },
+        {
+          "id": "a78c6467-a98c-47bf-9fae-ed03bbe3842e",
+          "codigo": "METAANALISIS",
+          "n_minima": null,
+          "condiciones": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        },
+        {
+          "id": "7dc4d08d-6ce2-46d5-b913-b8648e242f08",
+          "codigo": "ECA",
+          "n_minima": null,
+          "condiciones": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        },
+        {
+          "id": "b2b7d05f-bfd2-4574-93a4-8692d622cc78",
+          "codigo": "OBSERVACIONAL_CUALQUIERA",
+          "n_minima": 10,
+          "condiciones": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "En caso de que la evidencia de ECA sea insuficiente; comparativos y no comparativos (antes/después)."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "excluidos": [
+        {
+          "id": "37d08022-34b0-4d38-828a-1f3ff33f747f",
+          "codigo": "CASO",
+          "n_minima": null,
+          "condiciones": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        }
+      ],
+      "resto_excluido_aplicado": false
+    },
+    "tipos_publicacion": {
+      "modo": null,
+      "adicionales": [],
+      "condiciones": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph"
+          }
+        ]
+      }
+    },
+    "notas_revisores": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Los estudios que evalúen las intervenciones mediante IMACS se evaluarán aparte. Ejemplo abreviado: el tipo de publicación no se especifica en la fuente."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

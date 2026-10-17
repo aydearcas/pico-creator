@@ -1,15 +1,15 @@
 {
   "format": "pico-document",
-  "schema_version": "0.1.0",
+  "schema_version": "1.0.0",
   "text_format": "richtext-v1",
-  "documento_id": "11de2c12-35aa-4f7e-b328-9d84e2536687",
-  "revision_documento": 0,
+  "document_id": "11de2c12-35aa-4f7e-b328-9d84e2536687",
+  "document_revision": 0,
   "created_at": "2026-10-14T08:49:55.354Z",
   "updated_at": "2026-10-14T08:49:55.354Z",
-  "vinculacion_rs": null,
+  "review_link": null,
   "pico": {
-    "numero": "1",
-    "seccion": {
+    "number": "1",
+    "section": {
       "type": "doc",
       "content": [
         {
@@ -23,7 +23,7 @@
         }
       ]
     },
-    "pregunta_clinica": {
+    "clinical_question": {
       "type": "doc",
       "content": [
         {
@@ -37,14 +37,14 @@
         }
       ]
     },
-    "tipo_pregunta": {
-      "codigo": "INTERVENCION",
-      "plantilla": "intervencion",
-      "plantilla_version": "1.0"
+    "question_type": {
+      "code": "INTERVENTION",
+      "template": "intervention",
+      "template_version": "1.0"
     },
-    "version_criterios": "1.0",
-    "poblacion": {
-      "texto": {
+    "criteria_version": "1.0",
+    "population": {
+      "text": {
         "type": "doc",
         "content": [
           {
@@ -58,12 +58,12 @@
           }
         ]
       },
-      "subpoblaciones": []
+      "subpopulations": []
     },
-    "intervenciones": [
+    "interventions": [
       {
         "id": "9c8bc7df-f5e0-4d6c-9480-cfebf79fba3a",
-        "texto": {
+        "text": {
           "type": "doc",
           "content": [
             {
@@ -77,10 +77,10 @@
             }
           ]
         },
-        "hijos": [
+        "children": [
           {
             "id": "c1e64b22-aa6c-4dbf-a9eb-11021f7e50af",
-            "texto": {
+            "text": {
               "type": "doc",
               "content": [
                 {
@@ -94,11 +94,11 @@
                 }
               ]
             },
-            "hijos": []
+            "children": []
           },
           {
             "id": "4c6b7dd0-4d4f-4bc1-9dbd-40ca6fce8ad4",
-            "texto": {
+            "text": {
               "type": "doc",
               "content": [
                 {
@@ -112,11 +112,11 @@
                 }
               ]
             },
-            "hijos": []
+            "children": []
           },
           {
             "id": "66894347-69ac-4eb7-9e30-775587162d00",
-            "texto": {
+            "text": {
               "type": "doc",
               "content": [
                 {
@@ -130,13 +130,13 @@
                 }
               ]
             },
-            "hijos": []
+            "children": []
           }
         ]
       },
       {
         "id": "296e1edd-9406-411e-9be3-b60be9a6b079",
-        "texto": {
+        "text": {
           "type": "doc",
           "content": [
             {
@@ -150,10 +150,10 @@
             }
           ]
         },
-        "hijos": [
+        "children": [
           {
             "id": "45b1a6a4-fcf6-40c2-a98f-4105c5670669",
-            "texto": {
+            "text": {
               "type": "doc",
               "content": [
                 {
@@ -167,11 +167,11 @@
                 }
               ]
             },
-            "hijos": []
+            "children": []
           },
           {
             "id": "0ac7abe1-f665-4d9e-acd8-12b89ada0b90",
-            "texto": {
+            "text": {
               "type": "doc",
               "content": [
                 {
@@ -185,11 +185,11 @@
                 }
               ]
             },
-            "hijos": []
+            "children": []
           },
           {
             "id": "ce749415-090c-4c57-a789-6d36a73ddce1",
-            "texto": {
+            "text": {
               "type": "doc",
               "content": [
                 {
@@ -203,18 +203,18 @@
                 }
               ]
             },
-            "hijos": []
+            "children": []
           }
         ]
       }
     ],
-    "comparadores": [
+    "comparators": [
       {
         "id": "183b283e-9eba-40a5-867c-dc00f7da5c23",
-        "modo": "CONTROLADO",
-        "codigo": "PLACEBO",
-        "papel": "COMPARADOR",
-        "especificacion": {
+        "mode": "CONTROLLED",
+        "code": "PLACEBO",
+        "role": "COMPARATOR",
+        "specification": {
           "type": "doc",
           "content": [
             {
@@ -222,14 +222,14 @@
             }
           ]
         },
-        "hijos": []
+        "children": []
       },
       {
         "id": "d6a50ea4-acab-4a84-8d94-13b046953b81",
-        "modo": "CONTROLADO",
-        "codigo": "OTROS_FARMACOLOGICOS",
-        "papel": "COMPARADOR",
-        "especificacion": {
+        "mode": "CONTROLLED",
+        "code": "OTHER_PHARMACOLOGICAL",
+        "role": "COMPARATOR",
+        "specification": {
           "type": "doc",
           "content": [
             {
@@ -237,14 +237,14 @@
             }
           ]
         },
-        "hijos": []
+        "children": []
       },
       {
         "id": "1150b582-0f05-4be2-af8b-5890f6f10105",
-        "modo": "CONTROLADO",
-        "codigo": "CUIDADO_HABITUAL",
-        "papel": "COMPARADOR",
-        "especificacion": {
+        "mode": "CONTROLLED",
+        "code": "USUAL_CARE",
+        "role": "COMPARATOR",
+        "specification": {
           "type": "doc",
           "content": [
             {
@@ -252,14 +252,14 @@
             }
           ]
         },
-        "hijos": []
+        "children": []
       },
       {
         "id": "e6826734-d08e-4ecf-9aa9-619a34b81310",
-        "modo": "CONTROLADO",
-        "codigo": "SIN_COMPARACION",
-        "papel": "COMPARADOR",
-        "especificacion": {
+        "mode": "CONTROLLED",
+        "code": "NO_COMPARISON",
+        "role": "COMPARATOR",
+        "specification": {
           "type": "doc",
           "content": [
             {
@@ -267,13 +267,13 @@
             }
           ]
         },
-        "hijos": []
+        "children": []
       }
     ],
     "outcomes": [
       {
         "id": "0b93b5fe-42f6-42b6-ae7a-452568c96b51",
-        "nombre": {
+        "name": {
           "type": "doc",
           "content": [
             {
@@ -287,7 +287,7 @@
             }
           ]
         },
-        "descripcion": {
+        "description": {
           "type": "doc",
           "content": [
             {
@@ -301,18 +301,18 @@
             }
           ]
         },
-        "detalles": {
-          "importancia": null,
-          "puntuacion": null,
-          "momentos": [],
-          "instrumentos": [],
-          "umbrales": [],
-          "diferencia_minima_importante": null
+        "details": {
+          "importance": null,
+          "score": null,
+          "timepoints": [],
+          "instruments": [],
+          "thresholds": [],
+          "minimal_important_difference": null
         }
       },
       {
         "id": "f9f92a3d-3583-490e-9d97-333a38c456b9",
-        "nombre": {
+        "name": {
           "type": "doc",
           "content": [
             {
@@ -326,7 +326,7 @@
             }
           ]
         },
-        "descripcion": {
+        "description": {
           "type": "doc",
           "content": [
             {
@@ -340,18 +340,18 @@
             }
           ]
         },
-        "detalles": {
-          "importancia": null,
-          "puntuacion": null,
-          "momentos": [],
-          "instrumentos": [],
-          "umbrales": [],
-          "diferencia_minima_importante": null
+        "details": {
+          "importance": null,
+          "score": null,
+          "timepoints": [],
+          "instruments": [],
+          "thresholds": [],
+          "minimal_important_difference": null
         }
       },
       {
         "id": "ca21238c-dc88-4d06-ae7c-20f6e83bca15",
-        "nombre": {
+        "name": {
           "type": "doc",
           "content": [
             {
@@ -365,7 +365,7 @@
             }
           ]
         },
-        "descripcion": {
+        "description": {
           "type": "doc",
           "content": [
             {
@@ -379,24 +379,24 @@
             }
           ]
         },
-        "detalles": {
-          "importancia": null,
-          "puntuacion": null,
-          "momentos": [],
-          "instrumentos": [],
-          "umbrales": [],
-          "diferencia_minima_importante": null
+        "details": {
+          "importance": null,
+          "score": null,
+          "timepoints": [],
+          "instruments": [],
+          "thresholds": [],
+          "minimal_important_difference": null
         }
       }
     ],
-    "tipos_estudio": {
-      "catalogo_version": "1.0",
-      "incluidos": [
+    "study_designs": {
+      "catalog_version": "1.0",
+      "included": [
         {
           "id": "13dc2384-85c3-4250-9b9c-b50a9d1f2590",
-          "codigo": "REVISION_SISTEMATICA",
-          "n_minima": null,
-          "condiciones": {
+          "code": "SYSTEMATIC_REVIEW",
+          "min_n": null,
+          "conditions": {
             "type": "doc",
             "content": [
               {
@@ -407,9 +407,9 @@
         },
         {
           "id": "a78c6467-a98c-47bf-9fae-ed03bbe3842e",
-          "codigo": "METAANALISIS",
-          "n_minima": null,
-          "condiciones": {
+          "code": "META_ANALYSIS",
+          "min_n": null,
+          "conditions": {
             "type": "doc",
             "content": [
               {
@@ -420,9 +420,9 @@
         },
         {
           "id": "7dc4d08d-6ce2-46d5-b913-b8648e242f08",
-          "codigo": "ECA",
-          "n_minima": null,
-          "condiciones": {
+          "code": "RCT",
+          "min_n": null,
+          "conditions": {
             "type": "doc",
             "content": [
               {
@@ -433,9 +433,9 @@
         },
         {
           "id": "b2b7d05f-bfd2-4574-93a4-8692d622cc78",
-          "codigo": "OBSERVACIONAL_CUALQUIERA",
-          "n_minima": 10,
-          "condiciones": {
+          "code": "OBSERVATIONAL_ANY",
+          "min_n": 10,
+          "conditions": {
             "type": "doc",
             "content": [
               {
@@ -451,12 +451,12 @@
           }
         }
       ],
-      "excluidos": [
+      "excluded": [
         {
           "id": "37d08022-34b0-4d38-828a-1f3ff33f747f",
-          "codigo": "CASO",
-          "n_minima": null,
-          "condiciones": {
+          "code": "CASE_REPORT",
+          "min_n": null,
+          "conditions": {
             "type": "doc",
             "content": [
               {
@@ -466,12 +466,12 @@
           }
         }
       ],
-      "resto_excluido_aplicado": false
+      "remainder_excluded": false
     },
-    "tipos_publicacion": {
-      "modo": null,
-      "adicionales": [],
-      "condiciones": {
+    "publication_types": {
+      "mode": null,
+      "additional": [],
+      "conditions": {
         "type": "doc",
         "content": [
           {
@@ -480,7 +480,7 @@
         ]
       }
     },
-    "notas_revisores": {
+    "reviewer_notes": {
       "type": "doc",
       "content": [
         {
@@ -493,6 +493,7 @@
           ]
         }
       ]
-    }
+    },
+    "variable_catalogs": null
   }
 }

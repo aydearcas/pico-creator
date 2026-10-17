@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "PICO Creator candidate variable catalogue 0.1.0",
+  "title": "PICO Creator candidate variable catalogue 0.2.0",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -22,7 +22,7 @@
       "const": "pico-variable-catalog"
     },
     "schema_version": {
-      "const": "0.1.0"
+      "const": "0.2.0"
     },
     "catalog_id": {
       "$ref": "#/$defs/id"
@@ -32,10 +32,10 @@
     },
     "question_type": {
       "enum": [
-        "intervencion",
-        "diagnostico",
-        "pronostico",
-        "otras"
+        "intervention",
+        "diagnostic",
+        "prognosis",
+        "other"
       ]
     },
     "clinical_question": {
@@ -251,20 +251,20 @@
           "enum": [
             null,
             "PLACEBO",
-            "CUIDADO_HABITUAL",
-            "CUALQUIER_COMPARADOR",
-            "OTROS_FARMACOLOGICOS",
-            "SIMULADA",
-            "SIN_COMPARACION",
-            "PATRON_REFERENCIA",
-            "DIAGNOSTICO_CLINICO",
-            "OTRA_PRUEBA",
-            "PRUEBA_HABITUAL",
-            "SIN_COMPARACION_PRUEBAS",
-            "AUSENCIA_FACTOR",
-            "NIVEL_REFERENCIA",
-            "OTRO_FACTOR_MODELO",
-            "SEGUIMIENTO_HABITUAL"
+            "USUAL_CARE",
+            "ANY_COMPARATOR",
+            "OTHER_PHARMACOLOGICAL",
+            "SHAM",
+            "NO_COMPARISON",
+            "REFERENCE_STANDARD",
+            "CLINICAL_DIAGNOSIS",
+            "OTHER_TEST",
+            "USUAL_TEST",
+            "NO_TEST_COMPARISON",
+            "FACTOR_ABSENT",
+            "REFERENCE_LEVEL",
+            "OTHER_FACTOR_OR_MODEL",
+            "USUAL_FOLLOW_UP"
           ]
         },
         "children": {

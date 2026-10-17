@@ -1,4 +1,4 @@
-# Creador de PICOs 1.1.0
+# Creador de PICOs 1.2.0
 
 ## Uso inmediato
 
@@ -35,7 +35,7 @@ La barra actúa sobre el último campo de texto enfocado. Los colores son presen
 
 ## Guardado y recuperación
 
-**Guardar JSON** conserva textos, formato, jerarquía, orden, IDs, n mínima y metadatos. **Abrir** admite el JSON canónico `pico-document` versión 0.1.0. Un PDF o DOCX no se convierte automáticamente a PICO.
+**Guardar JSON** conserva textos, formato, jerarquía, orden, IDs, n mínima y metadatos. **Abrir** admite el JSON canónico `pico-document` versión 1.0.0 (claves y códigos en inglés). Los archivos de las versiones 0.1.0 y 0.2.0 (claves y códigos en español) se migran al abrirlos, sin cambiar contenido ni identificadores; el archivo original no se modifica hasta que se guarda. Un PDF o DOCX no se convierte automáticamente a PICO.
 
 Al abrir el HTML directamente, Guardar descarga un JSON. Al usar el servidor local, Chrome/Edge pueden permitir elegir un destino y sobrescribir el mismo archivo mediante el selector nativo. En Firefox/Safari u otros contextos se usa la descarga. Un guardado por descarga no confirma dónde ha colocado el navegador el archivo.
 
@@ -91,4 +91,4 @@ Dentro del editor, pulsa **Importar catálogo** y elige un archivo .pico-catalog
 
 Pulsa **Probar dermatomiositis** para cargar el ejemplo sin añadir automáticamente criterios. En **Contexto clínico y fuentes**, puedes incorporar su pregunta clínica. **Descargar JSON de ejemplo** permite guardar el catálogo. Es ilustrativo, no exhaustivo, y señala sus limitaciones.
 
-El archivo PICO guarda los catálogos importados y el origen de las selecciones, incluidos borrador y deshacer/rehacer. El esquema editable pasa a 0.2.0; puede abrir documentos anteriores 0.1.0. Las versiones anteriores del programa no abren el nuevo esquema. Las exportaciones solo incluyen los criterios seleccionados.
+El archivo PICO guarda los catálogos importados y el origen de las selecciones, incluidos borrador y deshacer/rehacer. El esquema editable es el 1.0.0; los documentos 0.1.0 y 0.2.0 y los catálogos 0.1.0 se migran al abrirlos. Las versiones anteriores del programa no abren el nuevo esquema. Las exportaciones solo incluyen los criterios seleccionados.

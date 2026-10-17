@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://pico-creator.local/schemas/pico-document-0.1.0.json",
-  "title": "PICO document 0.1.0",
+  "$id": "https://pico-creator.local/schemas/pico-document-1.0.0.json",
+  "title": "PICO document 1.0.0",
   "description": "Portable, rich clinical question. UTF-8; one question per file.",
   "type": "object",
   "properties": {
@@ -9,19 +9,16 @@
       "const": "pico-document"
     },
     "schema_version": {
-      "enum": [
-        "0.1.0",
-        "0.2.0"
-      ]
+      "const": "1.0.0"
     },
     "text_format": {
       "const": "richtext-v1"
     },
-    "documento_id": {
+    "document_id": {
       "type": "string",
       "minLength": 1
     },
-    "revision_documento": {
+    "document_revision": {
       "type": "integer",
       "minimum": 0
     },
@@ -31,7 +28,7 @@
     "updated_at": {
       "type": "string"
     },
-    "vinculacion_rs": {
+    "review_link": {
       "type": [
         "object",
         "null"
@@ -40,60 +37,60 @@
     "pico": {
       "type": "object",
       "properties": {
-        "numero": {
+        "number": {
           "type": "string"
         },
-        "seccion": {
+        "section": {
           "$ref": "#/$defs/rich"
         },
-        "pregunta_clinica": {
+        "clinical_question": {
           "$ref": "#/$defs/rich"
         },
-        "tipo_pregunta": {
+        "question_type": {
           "type": "object",
           "properties": {
-            "codigo": {
+            "code": {
               "enum": [
-                "INTERVENCION",
-                "SEGURIDAD",
-                "DIAGNOSTICO",
-                "PRONOSTICO",
-                "PREDICCION",
-                "ETIOLOGIA",
-                "EXPOSICION",
-                "PREVALENCIA",
-                "CUALITATIVA",
-                "OTRA"
+                "INTERVENTION",
+                "SAFETY",
+                "DIAGNOSTIC",
+                "PROGNOSIS",
+                "PREDICTION",
+                "ETIOLOGY",
+                "EXPOSURE",
+                "PREVALENCE",
+                "QUALITATIVE",
+                "OTHER"
               ]
             },
-            "plantilla": {
+            "template": {
               "enum": [
-                "intervencion",
-                "diagnostico",
-                "pronostico",
-                "otras"
+                "intervention",
+                "diagnostic",
+                "prognosis",
+                "other"
               ]
             },
-            "plantilla_version": {
+            "template_version": {
               "type": "string"
             }
           },
           "required": [
-            "codigo",
-            "plantilla",
-            "plantilla_version"
+            "code",
+            "template",
+            "template_version"
           ]
         },
-        "version_criterios": {
+        "criteria_version": {
           "type": "string"
         },
-        "poblacion": {
+        "population": {
           "type": "object",
           "properties": {
-            "texto": {
+            "text": {
               "$ref": "#/$defs/rich"
             },
-            "subpoblaciones": {
+            "subpopulations": {
               "type": "array",
               "maxItems": 1000,
               "items": {
@@ -103,30 +100,30 @@
                     "type": "string",
                     "minLength": 1
                   },
-                  "texto": {
+                  "text": {
                     "$ref": "#/$defs/rich"
                   }
                 },
                 "required": [
                   "id",
-                  "texto"
+                  "text"
                 ]
               }
             }
           },
           "required": [
-            "texto",
-            "subpoblaciones"
+            "text",
+            "subpopulations"
           ]
         },
-        "intervenciones": {
+        "interventions": {
           "type": "array",
           "maxItems": 1000,
           "items": {
             "$ref": "#/$defs/free"
           }
         },
-        "comparadores": {
+        "comparators": {
           "type": "array",
           "maxItems": 1000,
           "items": {
@@ -140,68 +137,68 @@
             "$ref": "#/$defs/outcome"
           }
         },
-        "tipos_estudio": {
+        "study_designs": {
           "type": "object",
           "properties": {
-            "catalogo_version": {
+            "catalog_version": {
               "type": "string"
             },
-            "incluidos": {
+            "included": {
               "type": "array",
               "maxItems": 1000,
               "items": {
                 "$ref": "#/$defs/design"
               }
             },
-            "excluidos": {
+            "excluded": {
               "type": "array",
               "maxItems": 1000,
               "items": {
                 "$ref": "#/$defs/design"
               }
             },
-            "resto_excluido_aplicado": {
+            "remainder_excluded": {
               "type": "boolean"
             }
           },
           "required": [
-            "catalogo_version",
-            "incluidos",
-            "excluidos",
-            "resto_excluido_aplicado"
+            "catalog_version",
+            "included",
+            "excluded",
+            "remainder_excluded"
           ]
         },
-        "tipos_publicacion": {
+        "publication_types": {
           "type": "object",
           "properties": {
-            "modo": {
+            "mode": {
               "enum": [
                 null,
-                "SOLO_COMPLETOS",
-                "COMPLETOS_Y_OTROS"
+                "FULL_REPORTS_ONLY",
+                "FULL_REPORTS_AND_OTHERS"
               ]
             },
-            "adicionales": {
+            "additional": {
               "type": "array",
               "maxItems": 1000,
               "items": {
                 "$ref": "#/$defs/publication"
               }
             },
-            "condiciones": {
+            "conditions": {
               "$ref": "#/$defs/rich"
             }
           },
           "required": [
-            "modo",
-            "adicionales",
-            "condiciones"
+            "mode",
+            "additional",
+            "conditions"
           ]
         },
-        "notas_revisores": {
+        "reviewer_notes": {
           "$ref": "#/$defs/rich"
         },
-        "catalogo_variables": {
+        "variable_catalogs": {
           "anyOf": [
             {
               "type": "null"
@@ -210,19 +207,19 @@
               "type": "object",
               "additionalProperties": false,
               "required": [
-                "catalogos",
-                "activo_id",
+                "catalogs",
+                "active_id",
                 "visible"
               ],
               "properties": {
-                "catalogos": {
+                "catalogs": {
                   "type": "array",
                   "maxItems": 20,
                   "items": {
                     "$ref": "#/$defs/variableCatalog"
                   }
                 },
-                "activo_id": {
+                "active_id": {
                   "type": [
                     "string",
                     "null"
@@ -237,18 +234,18 @@
         }
       },
       "required": [
-        "numero",
-        "seccion",
-        "pregunta_clinica",
-        "tipo_pregunta",
-        "version_criterios",
-        "poblacion",
-        "intervenciones",
-        "comparadores",
+        "number",
+        "section",
+        "clinical_question",
+        "question_type",
+        "criteria_version",
+        "population",
+        "interventions",
+        "comparators",
         "outcomes",
-        "tipos_estudio",
-        "tipos_publicacion",
-        "notas_revisores"
+        "study_designs",
+        "publication_types",
+        "reviewer_notes"
       ]
     }
   },
@@ -256,11 +253,11 @@
     "format",
     "schema_version",
     "text_format",
-    "documento_id",
-    "revision_documento",
+    "document_id",
+    "document_revision",
     "created_at",
     "updated_at",
-    "vinculacion_rs",
+    "review_link",
     "pico"
   ],
   "$defs": {
@@ -355,21 +352,21 @@
           "type": "string",
           "minLength": 1
         },
-        "texto": {
+        "text": {
           "$ref": "#/$defs/rich"
         },
-        "hijos": {
+        "children": {
           "type": "array",
           "maxItems": 0
         },
-        "catalogo_origen": {
+        "catalog_origin": {
           "$ref": "#/$defs/catalogProvenance"
         }
       },
       "required": [
         "id",
-        "texto",
-        "hijos"
+        "text",
+        "children"
       ]
     },
     "free": {
@@ -379,24 +376,24 @@
           "type": "string",
           "minLength": 1
         },
-        "texto": {
+        "text": {
           "$ref": "#/$defs/rich"
         },
-        "hijos": {
+        "children": {
           "type": "array",
           "maxItems": 1000,
           "items": {
             "$ref": "#/$defs/child"
           }
         },
-        "catalogo_origen": {
+        "catalog_origin": {
           "$ref": "#/$defs/catalogProvenance"
         }
       },
       "required": [
         "id",
-        "texto",
-        "hijos"
+        "text",
+        "children"
       ]
     },
     "design": {
@@ -406,57 +403,57 @@
           "type": "string",
           "minLength": 1
         },
-        "codigo": {
+        "code": {
           "enum": [
-            "CUALQUIER_ESTUDIO",
-            "REVISION_SISTEMATICA",
-            "METAANALISIS",
-            "ECA",
-            "ENSAYO_NO_ALEATORIZADO",
-            "OBSERVACIONAL_CUALQUIERA",
-            "OBSERVACIONAL_COMPARATIVO",
-            "OBSERVACIONAL_NO_COMPARATIVO",
-            "SERIE_CASOS",
-            "CASO",
-            "EXACTITUD_DIAGNOSTICA",
-            "MODELO_PREDICCION",
-            "CUALITATIVO",
-            "OTRO",
+            "ANY_DESIGN",
+            "SYSTEMATIC_REVIEW",
+            "META_ANALYSIS",
+            "RCT",
+            "NON_RANDOMIZED_TRIAL",
+            "OBSERVATIONAL_ANY",
+            "OBSERVATIONAL_COMPARATIVE",
+            "OBSERVATIONAL_NON_COMPARATIVE",
+            "CASE_SERIES",
+            "CASE_REPORT",
+            "DIAGNOSTIC_ACCURACY",
+            "PREDICTION_MODEL",
+            "QUALITATIVE_STUDY",
+            "OTHER",
             ""
           ]
         },
-        "n_minima": {
+        "min_n": {
           "type": [
             "integer",
             "null"
           ],
           "minimum": 1
         },
-        "condiciones": {
+        "conditions": {
           "$ref": "#/$defs/rich"
         }
       },
       "required": [
         "id",
-        "codigo",
-        "n_minima",
-        "condiciones"
+        "code",
+        "min_n",
+        "conditions"
       ],
       "allOf": [
         {
           "if": {
             "properties": {
-              "codigo": {
+              "code": {
                 "enum": [
-                  "REVISION_SISTEMATICA",
-                  "METAANALISIS"
+                  "SYSTEMATIC_REVIEW",
+                  "META_ANALYSIS"
                 ]
               }
             }
           },
           "then": {
             "properties": {
-              "n_minima": {
+              "min_n": {
                 "type": "null"
               }
             }
@@ -473,36 +470,36 @@
               "type": "string",
               "minLength": 1
             },
-            "modo": {
-              "const": "LIBRE"
+            "mode": {
+              "const": "FREE"
             },
-            "papel": {
+            "role": {
               "enum": [
-                "COMPARADOR",
-                "PATRON_REFERENCIA",
-                "OTRO"
+                "COMPARATOR",
+                "REFERENCE_STANDARD",
+                "OTHER"
               ]
             },
-            "texto": {
+            "text": {
               "$ref": "#/$defs/rich"
             },
-            "hijos": {
+            "children": {
               "type": "array",
               "maxItems": 1000,
               "items": {
                 "$ref": "#/$defs/child"
               }
             },
-            "catalogo_origen": {
+            "catalog_origin": {
               "$ref": "#/$defs/catalogProvenance"
             }
           },
           "required": [
             "id",
-            "modo",
-            "papel",
-            "texto",
-            "hijos"
+            "mode",
+            "role",
+            "text",
+            "children"
           ]
         },
         {
@@ -512,57 +509,57 @@
               "type": "string",
               "minLength": 1
             },
-            "modo": {
-              "const": "CONTROLADO"
+            "mode": {
+              "const": "CONTROLLED"
             },
-            "papel": {
+            "role": {
               "enum": [
-                "COMPARADOR",
-                "PATRON_REFERENCIA",
-                "OTRO"
+                "COMPARATOR",
+                "REFERENCE_STANDARD",
+                "OTHER"
               ]
             },
-            "codigo": {
+            "code": {
               "enum": [
                 "PLACEBO",
-                "CUIDADO_HABITUAL",
-                "CUALQUIER_COMPARADOR",
-                "OTROS_FARMACOLOGICOS",
-                "SIMULADA",
-                "SIN_COMPARACION",
-                "PATRON_REFERENCIA",
-                "DIAGNOSTICO_CLINICO",
-                "OTRA_PRUEBA",
-                "PRUEBA_HABITUAL",
-                "SIN_COMPARACION_PRUEBAS",
-                "AUSENCIA_FACTOR",
-                "NIVEL_REFERENCIA",
-                "OTRO_FACTOR_MODELO",
-                "SEGUIMIENTO_HABITUAL",
+                "USUAL_CARE",
+                "ANY_COMPARATOR",
+                "OTHER_PHARMACOLOGICAL",
+                "SHAM",
+                "NO_COMPARISON",
+                "REFERENCE_STANDARD",
+                "CLINICAL_DIAGNOSIS",
+                "OTHER_TEST",
+                "USUAL_TEST",
+                "NO_TEST_COMPARISON",
+                "FACTOR_ABSENT",
+                "REFERENCE_LEVEL",
+                "OTHER_FACTOR_OR_MODEL",
+                "USUAL_FOLLOW_UP",
                 ""
               ]
             },
-            "especificacion": {
+            "specification": {
               "$ref": "#/$defs/rich"
             },
-            "hijos": {
+            "children": {
               "type": "array",
               "maxItems": 1000,
               "items": {
                 "$ref": "#/$defs/child"
               }
             },
-            "catalogo_origen": {
+            "catalog_origin": {
               "$ref": "#/$defs/catalogProvenance"
             }
           },
           "required": [
             "id",
-            "modo",
-            "papel",
-            "codigo",
-            "especificacion",
-            "hijos"
+            "mode",
+            "role",
+            "code",
+            "specification",
+            "children"
           ]
         }
       ]
@@ -574,24 +571,24 @@
           "type": "string",
           "minLength": 1
         },
-        "nombre": {
+        "name": {
           "$ref": "#/$defs/rich"
         },
-        "descripcion": {
+        "description": {
           "$ref": "#/$defs/rich"
         },
-        "detalles": {
+        "details": {
           "type": "object",
           "properties": {
-            "importancia": {
+            "importance": {
               "enum": [
                 null,
-                "CRITICO",
-                "IMPORTANTE",
-                "NO_IMPORTANTE"
+                "CRITICAL",
+                "IMPORTANT",
+                "NOT_IMPORTANT"
               ]
             },
-            "puntuacion": {
+            "score": {
               "type": [
                 "integer",
                 "null"
@@ -599,28 +596,28 @@
               "minimum": 1,
               "maximum": 9
             },
-            "momentos": {
+            "timepoints": {
               "type": "array",
               "maxItems": 1000,
               "items": {
                 "type": "string"
               }
             },
-            "instrumentos": {
+            "instruments": {
               "type": "array",
               "maxItems": 1000,
               "items": {
                 "type": "string"
               }
             },
-            "umbrales": {
+            "thresholds": {
               "type": "array",
               "maxItems": 1000,
               "items": {
                 "type": "string"
               }
             },
-            "diferencia_minima_importante": {
+            "minimal_important_difference": {
               "type": [
                 "string",
                 "null"
@@ -628,23 +625,23 @@
             }
           },
           "required": [
-            "importancia",
-            "puntuacion",
-            "momentos",
-            "instrumentos",
-            "umbrales",
-            "diferencia_minima_importante"
+            "importance",
+            "score",
+            "timepoints",
+            "instruments",
+            "thresholds",
+            "minimal_important_difference"
           ]
         },
-        "catalogo_origen": {
+        "catalog_origin": {
           "$ref": "#/$defs/catalogProvenance"
         }
       },
       "required": [
         "id",
-        "nombre",
-        "descripcion",
-        "detalles"
+        "name",
+        "description",
+        "details"
       ]
     },
     "publication": {
@@ -654,30 +651,30 @@
           "type": "string",
           "minLength": 1
         },
-        "codigo": {
+        "code": {
           "enum": [
             "",
             "ABSTRACT",
-            "CARTA",
-            "TESIS",
-            "INFORME",
+            "LETTER",
+            "THESIS",
+            "REPORT",
             "PREPRINT",
-            "OTRA",
-            "CUALQUIERA"
+            "OTHER",
+            "ANY"
           ]
         },
-        "aclaracion": {
+        "clarification": {
           "$ref": "#/$defs/rich"
         }
       },
       "required": [
         "id",
-        "codigo",
-        "aclaracion"
+        "code",
+        "clarification"
       ]
     },
     "variableCatalog": {
-      "title": "PICO Creator candidate variable catalogue 0.1.0",
+      "title": "PICO Creator candidate variable catalogue 0.2.0",
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -699,7 +696,7 @@
           "const": "pico-variable-catalog"
         },
         "schema_version": {
-          "const": "0.1.0"
+          "const": "0.2.0"
         },
         "catalog_id": {
           "$ref": "#/$defs/variableCatalog/$defs/id"
@@ -709,10 +706,10 @@
         },
         "question_type": {
           "enum": [
-            "intervencion",
-            "diagnostico",
-            "pronostico",
-            "otras"
+            "intervention",
+            "diagnostic",
+            "prognosis",
+            "other"
           ]
         },
         "clinical_question": {
@@ -928,20 +925,20 @@
               "enum": [
                 null,
                 "PLACEBO",
-                "CUIDADO_HABITUAL",
-                "CUALQUIER_COMPARADOR",
-                "OTROS_FARMACOLOGICOS",
-                "SIMULADA",
-                "SIN_COMPARACION",
-                "PATRON_REFERENCIA",
-                "DIAGNOSTICO_CLINICO",
-                "OTRA_PRUEBA",
-                "PRUEBA_HABITUAL",
-                "SIN_COMPARACION_PRUEBAS",
-                "AUSENCIA_FACTOR",
-                "NIVEL_REFERENCIA",
-                "OTRO_FACTOR_MODELO",
-                "SEGUIMIENTO_HABITUAL"
+                "USUAL_CARE",
+                "ANY_COMPARATOR",
+                "OTHER_PHARMACOLOGICAL",
+                "SHAM",
+                "NO_COMPARISON",
+                "REFERENCE_STANDARD",
+                "CLINICAL_DIAGNOSIS",
+                "OTHER_TEST",
+                "USUAL_TEST",
+                "NO_TEST_COMPARISON",
+                "FACTOR_ABSENT",
+                "REFERENCE_LEVEL",
+                "OTHER_FACTOR_OR_MODEL",
+                "USUAL_FOLLOW_UP"
               ]
             },
             "children": {
