@@ -11,7 +11,7 @@ Produce an editable UTF-8 `.pico-catalog.json` file containing selectable propos
 
 Read [catalogue contract](references/catalog-contract.md) and [JSON Schema](references/pico-variable-catalog.schema.json) before generating a file. Use [structure example](references/structure-example.pico-catalog.json) only to understand the shape; it contains fictional variables.
 
-The schema is a draft import contract. PICO Creator 1.0.1 does not yet import these files. Never tell the user an import has been tested until an application version implementing this contract exists. Distribute this entire skill folder with its references.
+The catalogue schema 0.1.0 is imported by PICO Creator 1.1.0 and later. The editable PICO document uses its own schema 0.2.0. Do not claim a generated catalogue was tested in the application unless that particular file was actually tested. Distribute this entire skill folder with its references.
 
 ## Establish the clinical scope
 

@@ -1,4 +1,4 @@
-# PICO Creator 1.0.1
+# PICO Creator 1.1.0
 
 ## Quick start
 
@@ -78,4 +78,11 @@ Main intervention categories are bold and subitems indented, including exports. 
 
 The source package includes [generate-pico-catalog](skills/generate-pico-catalog/SKILL.md). Share the complete folder with an assistant supporting skills, or provide its instructions and references as context. It generates a `.pico-catalog.json` file with Spanish/English labels and descriptions, family/child hierarchy and actually consulted sources.
 
-The contract is a draft; application version 1.0.1 does not yet import catalogues. The planned editor has Import catalogue and a visibility switch for intervention, comparator and outcome dropdowns. Selected suggestions become editable document content and remain when the switch is off. The bundled example is fictional and illustrates structure only.
+Catalogue import is available in version 1.1.0. The editor has Import catalogue and a visibility switch for intervention, comparator and outcome dropdowns. Selected suggestions become editable document content and remain when the switch is off. The bundled example is fictional and illustrates structure only.
+
+
+## Preloaded variables — version 1.1.0
+
+Inside the editor, import a bilingual .pico-catalog.json file and turn on Show preloaded variables. Dropdowns add whole families or individual candidates as editable fields. Hiding suggestions preserves selections; changing language translates the options and leaves previously authored content intact.
+
+Try dermatomyositis loads a non-exhaustive built-in example. Clinical context and sources provides the example question, scope and source limitations; Download example JSON saves its catalogue. PICO schema 0.2.0 embeds the catalogue registry and selection provenance, including drafts and undo. Older 0.1.0 documents remain readable. Exports contain selected criteria only.

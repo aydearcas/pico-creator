@@ -1,7 +1,8 @@
 import Ajv from 'ajv';
 import schema from '../pico-document.schema.json' with {type:'json'};
+import {validateCatalog} from './catalog-schema.js';
 const schemaCheck=new Ajv({strict:false}).compile(schema);
-export const VERSION='1.0.1';
+export const VERSION='1.1.0';
 export const uid=()=>globalThis.crypto?.randomUUID?.()||`id-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 export const rich=(text='')=>({type:'doc',content:[{type:'paragraph',...(text?{content:[{type:'text',text}]}:{})}]});
 export const copy=o=>JSON.parse(JSON.stringify(o));
@@ -22,7 +23,7 @@ export const PUB_LABELS={ABSTRACT:['Conference abstracts','Abstracts / resúmene
 export const label=(table,code,lang='en')=>table[code]?.[lang==='es'?1:0]||code||'';
 export const noN=code=>['REVISION_SISTEMATICA','METAANALISIS'].includes(code);
 export const typeCode=type=>({intervencion:'INTERVENCION',diagnostico:'DIAGNOSTICO',pronostico:'PRONOSTICO',otras:'OTRA'})[type];
-export function newDocument(type='intervencion'){const now=new Date().toISOString();return {format:'pico-document',schema_version:'0.1.0',text_format:'richtext-v1',documento_id:uid(),revision_documento:0,created_at:now,updated_at:now,vinculacion_rs:null,pico:{numero:'',seccion:rich(),pregunta_clinica:rich(),tipo_pregunta:{codigo:typeCode(type),plantilla:type,plantilla_version:'1.0'},version_criterios:'1.0',poblacion:{texto:rich(),subpoblaciones:[]},intervenciones:[],comparadores:[],outcomes:[],tipos_estudio:{catalogo_version:'1.1',incluidos:[],excluidos:[],resto_excluido_aplicado:false},tipos_publicacion:{modo:null,adicionales:[],condiciones:rich()},notas_revisores:rich()}};}
+export function newDocument(type='intervencion'){const now=new Date().toISOString();return {format:'pico-document',schema_version:'0.2.0',text_format:'richtext-v1',documento_id:uid(),revision_documento:0,created_at:now,updated_at:now,vinculacion_rs:null,pico:{numero:'',seccion:rich(),pregunta_clinica:rich(),tipo_pregunta:{codigo:typeCode(type),plantilla:type,plantilla_version:'1.0'},version_criterios:'1.0',poblacion:{texto:rich(),subpoblaciones:[]},intervenciones:[],comparadores:[],outcomes:[],tipos_estudio:{catalogo_version:'1.1',incluidos:[],excluidos:[],resto_excluido_aplicado:false},tipos_publicacion:{modo:null,adicionales:[],condiciones:rich()},notas_revisores:rich(),catalogo_variables:null}};}
 export const freeItem=()=>({id:uid(),texto:rich(),hijos:[]});
 export const comparator=(mode='LIBRE',code='')=>mode==='LIBRE'?{...freeItem(),modo:mode,papel:'COMPARADOR'}:{id:uid(),modo:mode,codigo:code,papel:code==='PATRON_REFERENCIA'?'PATRON_REFERENCIA':'COMPARADOR',especificacion:rich(),hijos:[]};
 export const outcome=()=>({id:uid(),nombre:rich(),descripcion:rich(),detalles:{importancia:null,puntuacion:null,momentos:[],instrumentos:[],umbrales:[],diferencia_minima_importante:null}});
@@ -35,7 +36,7 @@ function validRich(node,depth=0){if(!node||typeof node!=='object'||!nodes.has(no
 export function validateDocument(d){
  const errors=[];const add=s=>errors.push(s);
  if(!d||typeof d!=='object'||d.format!=='pico-document')return ['FORMAT'];
- if(d.schema_version!=='0.1.0')return ['SCHEMA_VERSION'];
+ if(!['0.1.0','0.2.0'].includes(d.schema_version))return ['SCHEMA_VERSION'];
  if(!schemaCheck(d))return ['STRUCTURE:'+schemaCheck.errors.map(e=>(e.instancePath||'/')+' '+e.keyword).join(', ')];
  if(d.text_format!=='richtext-v1')add('TEXT_FORMAT');
  if(typeof d.documento_id!=='string'||!d.documento_id)add('DOCUMENT_ID');
@@ -55,6 +56,15 @@ export function validateDocument(d){
  for(const k of ['incluidos','excluidos'])list(p.tipos_estudio?.[k],k,x=>{id(x);if(typeof x?.codigo!=='string'||(x.codigo&&!DESIGN_LABELS[x.codigo]))add('DESIGN_CODE');if(x?.n_minima!==null&&(!Number.isInteger(x?.n_minima)||x.n_minima<1))add('MIN_N');if(noN(x?.codigo)&&x?.n_minima!==null)add('MIN_N_REVIEW');rt(x?.condiciones,'conditions');});
  if(!p.tipos_estudio||typeof p.tipos_estudio.catalogo_version!=='string'||typeof p.tipos_estudio.resto_excluido_aplicado!=='boolean')add('DESIGN_METADATA');
  const pub=p.tipos_publicacion;if(!pub||![null,'SOLO_COMPLETOS','COMPLETOS_Y_OTROS'].includes(pub.modo))add('PUBLICATION_MODE');rt(pub?.condiciones,'publication_conditions');list(pub?.adicionales,'publications',x=>{id(x);if(typeof x?.codigo!=='string'||(x.codigo&&!PUB_LABELS[x.codigo]))add('PUBLICATION_CODE');rt(x?.aclaracion,'publication_note');});if(pub?.modo!=='COMPLETOS_Y_OTROS'&&pub?.adicionales?.length)add('INACTIVE_PUBLICATIONS');
+ const catalogs=p.catalogo_variables;
+ if(catalogs){
+  const seenCatalogs=new Set();
+  for(const c of catalogs.catalogos){if(seenCatalogs.has(c.catalog_id))add('CATALOG_DUPLICATE');seenCatalogs.add(c.catalog_id);for(const e of validateCatalog(c))add(e);}
+  if(catalogs.activo_id!==null&&!seenCatalogs.has(catalogs.activo_id))add('CATALOG_ACTIVE');
+ }
+ const checkOrigin=x=>{if(x.catalogo_origen&&!catalogs?.catalogos.some(c=>c.catalog_id===x.catalogo_origen.catalog_id))add('CATALOG_ORIGIN');for(const child of x.hijos||[])checkOrigin(child);};
+ for(const item of [...p.intervenciones,...p.comparadores,...p.outcomes])checkOrigin(item);
+ if(d.schema_version==='0.1.0'&&(catalogs||[...p.intervenciones,...p.comparadores,...p.outcomes].some(x=>x.catalogo_origen)))add('CATALOG_SCHEMA_VERSION');
  return [...new Set(errors)];
 }
 export function warnings(d){const p=d.pico;const w=[];if(!/^[1-9][0-9]*[a-z]?$/.test(p.numero))w.push('numberWarning');if(emptyRich(p.pregunta_clinica))w.push('questionWarning');if(emptyRich(p.poblacion.texto))w.push('populationWarning');if(!p.outcomes.length||p.outcomes.some(x=>emptyRich(x.nombre)))w.push('outcomeWarning');if(!p.tipos_estudio.incluidos.length||[...p.tipos_estudio.incluidos,...p.tipos_estudio.excluidos].some(x=>!x.codigo||(x.codigo==='OTRO'&&emptyRich(x.condiciones))))w.push('designWarning');if(p.tipos_publicacion.modo==null||(p.tipos_publicacion.modo==='COMPLETOS_Y_OTROS'&&(!p.tipos_publicacion.adicionales.length||p.tipos_publicacion.adicionales.some(x=>!x.codigo))))w.push('publicationWarning');const type=p.tipo_pregunta.plantilla;if([...p.tipos_estudio.incluidos,...p.tipos_estudio.excluidos].some(x=>x.codigo&&!DESIGN_CATALOGS[type].includes(x.codigo))||p.comparadores.some(x=>x.modo==='CONTROLADO'&&x.codigo&&!COMP_CATALOGS[type].includes(x.codigo)))w.push('catalogWarning');if(p.tipos_estudio.incluidos.some(x=>p.tipos_estudio.excluidos.some(y=>y.codigo===x.codigo||x.codigo==='CUALQUIER_ESTUDIO'||y.codigo==='CUALQUIER_ESTUDIO')))w.push('overlapWarning');if(p.comparadores.some(x=>['SIN_COMPARACION','SIN_COMPARACION_PRUEBAS'].includes(x.codigo))&&p.comparadores.length>1)w.push('comparisonWarning');return w;}

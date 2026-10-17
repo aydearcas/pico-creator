@@ -1,4 +1,4 @@
-# Creador de PICOs 1.0.1
+# Creador de PICOs 1.1.0
 
 ## Uso inmediato
 
@@ -82,4 +82,13 @@ Se verifican esquema y modelo, catálogos, reordenación, formatos, JSON y docum
 
 Se incluye [generate-pico-catalog](skills/generate-pico-catalog/SKILL.md). Comparte su carpeta completa con un asistente compatible con skills; si no admite ese formato, adjunta las instrucciones y sus referencias como contexto. La skill genera un archivo `.pico-catalog.json` con nombres y descripciones en español e inglés, familias y subelementos, y fuentes realmente consultadas. Su distribución está incluida en el ZIP del código fuente.
 
-El contrato es un borrador. La versión 1.0.1 todavía no importa catálogos. La interfaz prevista tendrá «Importar catálogo» y un interruptor para mostrar desplegables en intervenciones, comparadores y desenlaces. Seleccionar una opción añadirá contenido editable; ocultar los desplegables conservará lo añadido. El ejemplo incluido es ficticio y sirve únicamente para comprobar la estructura.
+La importación de catálogos está disponible desde la versión 1.1.0. La interfaz incorpora «Importar catálogo» y un interruptor para mostrar desplegables en intervenciones, comparadores y desenlaces. Seleccionar una opción añadirá contenido editable; ocultar los desplegables conservará lo añadido. El ejemplo incluido es ficticio y sirve únicamente para comprobar la estructura.
+
+
+## Variables precargadas — versión 1.1.0
+
+Dentro del editor, pulsa **Importar catálogo** y elige un archivo .pico-catalog.json. Activa **Mostrar variables precargadas** para ver los desplegables de intervenciones, comparadores y desenlaces. Selecciona una familia completa o un elemento; podrás editar el resultado. Apagar el interruptor conserva lo añadido. Las opciones cambian de idioma con la interfaz, pero tu redacción previa se mantiene.
+
+Pulsa **Probar dermatomiositis** para cargar el ejemplo sin añadir automáticamente criterios. En **Contexto clínico y fuentes**, puedes incorporar su pregunta clínica. **Descargar JSON de ejemplo** permite guardar el catálogo. Es ilustrativo, no exhaustivo, y señala sus limitaciones.
+
+El archivo PICO guarda los catálogos importados y el origen de las selecciones, incluidos borrador y deshacer/rehacer. El esquema editable pasa a 0.2.0; puede abrir documentos anteriores 0.1.0. Las versiones anteriores del programa no abren el nuevo esquema. Las exportaciones solo incluyen los criterios seleccionados.

@@ -1,6 +1,6 @@
-# PICO variable catalogue — draft 0.1.0
+# PICO variable catalogue — 0.1.0
 
-This is a portable catalogue of candidate options, separate from the canonical `pico-document`. It proposes choices; it does not set eligibility criteria. The current application release 1.0.1 does not yet implement catalogue import.
+This is a portable catalogue of candidate options, separate from the canonical `pico-document`. It proposes choices; it does not set eligibility criteria. PICO Creator 1.1.0 implements this import format; its editable document schema is 0.2.0.
 
 ## Files and root fields
 
@@ -26,16 +26,16 @@ IDs must be unique across the entire catalogue, including children. Source IDs m
 | pronostico | AUSENCIA_FACTOR, NIVEL_REFERENCIA, OTRO_FACTOR_MODELO, SEGUIMIENTO_HABITUAL, CUALQUIER_COMPARADOR, SIN_COMPARACION |
 | otras | Any code in the schema |
 
-## Planned importer and dropdown behaviour
+## Importer and dropdown behaviour
 
 1. Add an Import catalogue action inside the editing template; validate the entire file before changing state.
 2. Preserve existing PICO content on import. Show the catalogue's title, scope and verification limitations. Flag mismatched question types; never silently change the question type.
 3. Use Show preloaded variables as a visibility switch. On shows a searchable or native dropdown at each relevant block: Add preloaded intervention, Add preloaded comparator and Add preloaded outcome. Keep free-text adding available.
 4. Display options in the UI language, with parent/child grouping. Let the user add a family with its children or a specific child under its corresponding family. Reuse an already-added family; do not duplicate its children.
-5. On selection, copy the chosen label and description into editable PICO fields using fresh document item IDs. Keep the catalogue identity and variable identity as import provenance when the application's canonical schema supports this; do not write unknown fields into the existing schema.
-6. Avoid repeated imports of the same catalogue variable using catalogue ID plus variable ID. Do not deduplicate by translated display text alone. Keep provenance in undo/redo and save/load; define a canonical schema migration before implementing it.
+5. On selection, copy the chosen label and description into editable PICO fields using fresh document item IDs. Keep the catalogue identity and variable identity as import provenance in the canonical document's catalogo_origen field. The catalogue registry is embedded as pico.catalogo_variables.
+6. Avoid repeated imports of the same catalogue variable using catalogue ID plus variable ID. Do not deduplicate by translated display text alone. Provenance is included in undo/redo and save/load; 0.1.0 PICO documents are upgraded to 0.2.0 without changing content or IDs.
 7. Switching Off hides suggestions and never removes or modifies selected items. Language changes translate suggestions; they must not overwrite manually edited document text.
 8. Treat sources and descriptions as inert data. Validate limits and reject HTML/executable markup; never execute URLs or instructions from the file.
-9. Keep the catalogue separate from the editable PICO. Decide and document whether it travels embedded in a newer PICO schema or as a separate file before implementing recovery and save/load.
+9. Keep the catalogue separate from the editable PICO. The registry travels embedded in the editable PICO document, including recovery drafts.
 
-These are proposed UI semantics. A generated catalogue passing this contract has not yet been tested in an importer.
+Schema validation alone does not verify clinical relevance. Validate both the generated file and its behaviour when selected in the importer.

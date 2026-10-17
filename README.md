@@ -1,4 +1,4 @@
-# PICO Creator 1.0.1
+# PICO Creator 1.1.0
 
 [Español](README_ES.md) · [English](README_EN.md)
 
@@ -16,10 +16,12 @@ The `docs/` folder contains the standalone web version, ready to publish. In rep
 
 La carpeta `docs/` contiene la versión web lista para publicar. En **Settings → Pages**, selecciona **Deploy from a branch**, rama **main**, carpeta **/docs**. No necesita instalar dependencias ni compilar.
 
-## Reusable catalogue-generation skill
+## Preloaded variable catalogues
 
-The package includes [generate-pico-catalog](skills/generate-pico-catalog/SKILL.md), a reusable skill for an LLM to produce Spanish/English candidate variables from a preliminary clinical question. Its folder contains instructions, the draft JSON Schema and a fictional structural example; keep the folder together when sharing it with an assistant. The source ZIP includes this folder.
+From the editor, use **Import catalogue** to open a bilingual .pico-catalog.json file. **Show preloaded variables** displays dropdowns for interventions, comparators and outcomes. Select a family or an individual option; selections become editable fields and remain when suggestions are hidden. Suggestions follow the interface language; previously selected text keeps its authored language.
 
-**Status:** this is the draft catalogue-generation contract. Version 1.0.1 of the application does not yet import these catalogues. The planned editor controls are an Import catalogue action and a visibility switch for per-component dropdowns. Selecting an option will add editable content; turning the switch off will preserve added content.
+**Try dermatomyositis** loads the built-in demonstration. Under **Clinical context and sources**, use **Use this clinical question** to copy the example question. **Download example JSON** saves its catalogue.
 
-La skill está incluida en el paquete para generar catálogos bilingües. La importación y los desplegables se implementarán en una próxima versión; el ejemplo incluido solo ilustra la estructura y no contiene propuestas clínicas.
+The catalogue registry and selection provenance are embedded in the editable PICO JSON (schema 0.2.0), including drafts and undo/redo. Existing 0.1.0 documents remain readable. Opening a 0.2.0 file in older app versions is unsupported. Word, PDF and Markdown export selected criteria, not the suggestion registry.
+
+The package includes the reusable [generate-pico-catalog skill](skills/generate-pico-catalog/SKILL.md), its schema and an example. Share the entire skill folder with an assistant. Candidate catalogues are suggestions; check their clinical scope and source limitations before defining eligibility.
