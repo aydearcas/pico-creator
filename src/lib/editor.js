@@ -5,3 +5,4 @@ export {newDocument,validateDocument,warnings,legacy,VERSION,LANG_LABELS} from '
 export {migrateDocument,isLegacyDocument,SCHEMA_VERSION} from '../migrate.js';
 export {previewHtml,toMarkdown} from '../present.js';
 export {translate} from '../i18n.js';
+export {importPrompt,pendingCount} from '../review.js';

@@ -1,4 +1,4 @@
-# Creador de PICOs 1.4.1
+# Creador de PICOs 1.5.0
 
 ## Uso inmediato
 
@@ -36,7 +36,7 @@ La barra actúa sobre el último campo de texto enfocado. Los colores son presen
 
 ## Guardado y recuperación
 
-**Guardar JSON** conserva textos, formato, jerarquía, orden, IDs, n mínima y metadatos. **Abrir** admite el JSON canónico `pico-document` versión 1.1.0 (claves y códigos en inglés). Los archivos de las versiones 0.1.0 y 0.2.0 (claves y códigos en español) y 1.0.0 (sin idiomas) se migran al abrirlos, sin cambiar contenido ni identificadores; el archivo original no se modifica hasta que se guarda. Un PDF o DOCX no se convierte automáticamente a PICO.
+**Guardar JSON** conserva textos, formato, jerarquía, orden, IDs, n mínima y metadatos. **Abrir** admite el JSON canónico `pico-document` versión 1.1.0 (claves y códigos en inglés). Los archivos de las versiones 0.1.0 y 0.2.0 (claves y códigos en español) y 1.0.0 (sin idiomas) se migran al abrirlos, sin cambiar contenido ni identificadores; el archivo original no se modifica hasta que se guarda. Un Word o un PDF no se convierte solo: **Importar desde Word o PDF** (portada) da el prompt para la skill `importar-pico` de revsis-app, que entrega un borrador `.pico.json`. Al abrirlo, el editor muestra la **revisión de la importación**: cada campo dudoso o no importado lleva una insignia con el motivo, la cita y la página, y un panel arriba lista lo pendiente y el texto sin colocar. Cada marca se quita con «Marcar como revisado»; no hay revisión en bloque.
 
 Al abrir el HTML directamente, Guardar descarga un JSON. Al usar el servidor local, Chrome/Edge pueden permitir elegir un destino y sobrescribir el mismo archivo mediante el selector nativo. En Firefox/Safari u otros contextos se usa la descarga. Un guardado por descarga no confirma dónde ha colocado el navegador el archivo.
 
