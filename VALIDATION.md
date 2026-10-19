@@ -1,4 +1,4 @@
-# Validation / Verificación · 1.4.0
+# Validation / Verificación · 1.4.1
 
 The read-only GitHub Actions workflow builds the standalone application and runs the complete automated test suite before distribution files are published.
 

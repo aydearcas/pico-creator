@@ -1,4 +1,4 @@
-# PICO Creator 1.4.0
+# PICO Creator 1.4.1
 
 ## Quick start
 

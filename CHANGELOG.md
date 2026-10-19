@@ -1,3 +1,7 @@
+# 1.4.1 — 2026-10-19
+
+- Rich-text fields no longer fail when Tiptap has already destroyed their editor. Tiptap creates the editor while rendering and destroys it 1 ms later if the component has not been mounted yet; when the host renders concurrently (revsis-app loads the editor inside `Suspense`), the mount can come later and the placeholder update used the destroyed editor (`extensionManager` is null), which left the page blank. The update now waits for the live editor, as the content update already did.
+
 # 1.4.0 — 2026-10-19
 
 - The editor is now a reusable React component, `PicoEditor` (revsis-app ADR 0036). The standalone app is a thin layer around it (home, files, browser draft, export, theme, language and help) and works as before.
