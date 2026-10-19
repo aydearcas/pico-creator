@@ -1,6 +1,6 @@
 {
   "format": "pico-document",
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "text_format": "richtext-v1",
   "document_id": "11de2c12-35aa-4f7e-b328-9d84e2536687",
   "document_revision": 0,
@@ -471,6 +471,18 @@
     "publication_types": {
       "mode": null,
       "additional": [],
+      "conditions": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph"
+          }
+        ]
+      }
+    },
+    "languages": {
+      "mode": null,
+      "included": [],
       "conditions": {
         "type": "doc",
         "content": [

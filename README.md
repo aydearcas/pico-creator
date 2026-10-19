@@ -1,4 +1,4 @@
-# PICO Creator 1.2.0
+# PICO Creator 1.3.0
 
 [Español](README_ES.md) · [English](README_EN.md)
 
@@ -22,6 +22,6 @@ From the editor, use **Import catalogue** to open a bilingual .pico-catalog.json
 
 **Try dermatomyositis** loads the built-in demonstration. Under **Clinical context and sources**, use **Use this clinical question** to copy the example question. **Download example JSON** saves its catalogue.
 
-The catalogue registry and selection provenance are embedded in the editable PICO JSON (schema 1.0.0, English keys and codes), including drafts and undo/redo. Documents saved with schema 0.1.0 or 0.2.0 (Spanish keys and codes) are migrated when opened; the original file is not modified until you save. Opening a 1.0.0 file in older app versions is unsupported. Word, PDF and Markdown export selected criteria, not the suggestion registry.
+The catalogue registry and selection provenance are embedded in the editable PICO JSON (schema 1.1.0, English keys and codes), including drafts and undo/redo. Documents saved with schema 0.1.0, 0.2.0 (Spanish keys and codes) or 1.0.0 are migrated when opened; the original file is not modified until you save. Opening a 1.1.0 file in older app versions is unsupported. The schema belongs to revsis-app; `pico-document.schema.json` is an exact copy. Word, PDF and Markdown export selected criteria, not the suggestion registry.
 
 The package includes the reusable [generate-pico-catalog skill](skills/generate-pico-catalog/SKILL.md), its schema and an example. Share the entire skill folder with an assistant. Candidate catalogues are suggestions; check their clinical scope and source limitations before defining eligibility.

@@ -1,4 +1,4 @@
-# Creador de PICOs 1.2.0
+# Creador de PICOs 1.3.0
 
 ## Uso inmediato
 
@@ -19,12 +19,13 @@ No es necesario instalar Node ni Python para este uso. La aplicación, sus fuent
 
 ## Editor
 
-- Once propiedades: número, sección, pregunta clínica, tipo, población, intervenciones/pruebas/factores, comparadores/referencia, desenlaces, tipos de estudio, tipos de publicación y notas para revisores.
+- Doce propiedades: número, sección, pregunta clínica, tipo, población, intervenciones/pruebas/factores, comparadores/referencia, desenlaces, tipos de estudio, tipos de publicación, idiomas y notas para revisores.
 - Subpoblaciones y subintervenciones/subcomparadores añadibles. Todos los elementos repetibles tienen botones de eliminar y ordenar.
 - Arrastra el tirador de seis puntos para reordenar **dentro de la misma lista**. Las flechas ofrecen la alternativa con teclado. No se mezclan incluidos y excluidos por arrastre; conserva la intención de cada lista.
 - Los diseños y comparadores disponibles dependen del tipo de pregunta. En intervención no aparecen diseños de exactitud diagnóstica, predicción o cualitativos. Un criterio existente ajeno a la nueva plantilla se conserva y se marca para revisar.
 - Cada diseño tiene **n mínima** al lado derecho, excepto RS y metaanálisis. Vacío significa sin umbral; no es cero. En no incluidos, un umbral se presenta como exclusión para ese diseño con n ≥ valor; si quieres excluir n menor que un umbral, indícalo en condiciones o define el mínimo en incluidos.
 - Los tipos de publicación están **debajo de tipos de estudio**. «Sólo estudios completos» y «Estudios completos y otros tipos de publicaciones» son opciones excluyentes. En la segunda se seleccionan expresamente abstracts, cartas, tesis u otros formatos. No se aceptan todos automáticamente.
+- Los **idiomas** están debajo de los tipos de publicación: sin restricción o sólo los idiomas seleccionados, con códigos ISO 639-2/B como los del campo de idioma de MEDLINE (`eng`, `spa`, `fre`…). Hay una lista de 23 idiomas habituales, se puede añadir cualquier otro código de tres letras y hay un campo de condiciones.
 - Los desenlaces separan nombre y descripción. Sus detalles opcionales incluyen importancia, puntuación, momentos, instrumentos y umbrales. No se infieren de la descripción.
 
 ## Formato como en un procesador de texto
@@ -35,7 +36,7 @@ La barra actúa sobre el último campo de texto enfocado. Los colores son presen
 
 ## Guardado y recuperación
 
-**Guardar JSON** conserva textos, formato, jerarquía, orden, IDs, n mínima y metadatos. **Abrir** admite el JSON canónico `pico-document` versión 1.0.0 (claves y códigos en inglés). Los archivos de las versiones 0.1.0 y 0.2.0 (claves y códigos en español) se migran al abrirlos, sin cambiar contenido ni identificadores; el archivo original no se modifica hasta que se guarda. Un PDF o DOCX no se convierte automáticamente a PICO.
+**Guardar JSON** conserva textos, formato, jerarquía, orden, IDs, n mínima y metadatos. **Abrir** admite el JSON canónico `pico-document` versión 1.1.0 (claves y códigos en inglés). Los archivos de las versiones 0.1.0 y 0.2.0 (claves y códigos en español) y 1.0.0 (sin idiomas) se migran al abrirlos, sin cambiar contenido ni identificadores; el archivo original no se modifica hasta que se guarda. Un PDF o DOCX no se convierte automáticamente a PICO.
 
 Al abrir el HTML directamente, Guardar descarga un JSON. Al usar el servidor local, Chrome/Edge pueden permitir elegir un destino y sobrescribir el mismo archivo mediante el selector nativo. En Firefox/Safari u otros contextos se usa la descarga. Un guardado por descarga no confirma dónde ha colocado el navegador el archivo.
 
@@ -64,7 +65,7 @@ Documentación técnica: [PyInstaller y sistemas operativos](https://pyinstaller
 
 ## Desarrollo y comprobación
 
-El código fuente está en `src/`, el contrato en `pico-document.schema.json` y un ejemplo abreviado en `examples/`. El contenido del ejemplo procede de la PICO aportada; no es un protocolo validado y deja pendiente el tipo de publicación, que no figura en la fuente.
+El código fuente está en `src/`, el contrato en `pico-document.schema.json` (copia exacta del esquema de revsis-app, que es su fuente de verdad) y un ejemplo abreviado en `examples/`. El contenido del ejemplo procede de la PICO aportada; no es un protocolo validado y deja pendiente el tipo de publicación, que no figura en la fuente.
 
 Requiere Node 22.12 o posterior para desarrollo; el usuario del HTML no lo necesita.
 
@@ -91,4 +92,4 @@ Dentro del editor, pulsa **Importar catálogo** y elige un archivo .pico-catalog
 
 Pulsa **Probar dermatomiositis** para cargar el ejemplo sin añadir automáticamente criterios. En **Contexto clínico y fuentes**, puedes incorporar su pregunta clínica. **Descargar JSON de ejemplo** permite guardar el catálogo. Es ilustrativo, no exhaustivo, y señala sus limitaciones.
 
-El archivo PICO guarda los catálogos importados y el origen de las selecciones, incluidos borrador y deshacer/rehacer. El esquema editable es el 1.0.0; los documentos 0.1.0 y 0.2.0 y los catálogos 0.1.0 se migran al abrirlos. Las versiones anteriores del programa no abren el nuevo esquema. Las exportaciones solo incluyen los criterios seleccionados.
+El archivo PICO guarda los catálogos importados y el origen de las selecciones, incluidos borrador y deshacer/rehacer. El esquema editable es el 1.1.0; los documentos 0.1.0, 0.2.0 y 1.0.0 y los catálogos 0.1.0 se migran al abrirlos. Las versiones anteriores del programa no abren el nuevo esquema. Las exportaciones solo incluyen los criterios seleccionados.

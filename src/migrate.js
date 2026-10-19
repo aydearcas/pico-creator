@@ -1,9 +1,10 @@
-// Migration of pico-document files written before schema 1.0.0 (Spanish keys and codes).
+// Migration of older pico-document files: 0.1.0/0.2.0 (Spanish keys and codes) to 1.0.0,
+// then 1.0.0 to 1.1.0 (adds the empty languages block; revsis-app ADR 0035).
 // Older files are converted on open; the original file is never modified.
 const copy=o=>JSON.parse(JSON.stringify(o));
-export const SCHEMA_VERSION='1.0.0';
+export const SCHEMA_VERSION='1.1.0';
 export const CATALOG_SCHEMA_VERSION='0.2.0';
-export const LEGACY_SCHEMA_VERSIONS=['0.1.0','0.2.0'];
+export const LEGACY_SCHEMA_VERSIONS=['0.1.0','0.2.0','1.0.0'];
 export const LEGACY_CATALOG_VERSIONS=['0.1.0'];
 export const LEGACY_KEYS={documento_id:'document_id',revision_documento:'document_revision',vinculacion_rs:'review_link',numero:'number',seccion:'section',pregunta_clinica:'clinical_question',tipo_pregunta:'question_type',codigo:'code',plantilla:'template',plantilla_version:'template_version',version_criterios:'criteria_version',poblacion:'population',texto:'text',subpoblaciones:'subpopulations',intervenciones:'interventions',comparadores:'comparators',hijos:'children',modo:'mode',papel:'role',especificacion:'specification',nombre:'name',descripcion:'description',detalles:'details',importancia:'importance',puntuacion:'score',momentos:'timepoints',instrumentos:'instruments',umbrales:'thresholds',diferencia_minima_importante:'minimal_important_difference',tipos_estudio:'study_designs',catalogo_version:'catalog_version',incluidos:'included',excluidos:'excluded',resto_excluido_aplicado:'remainder_excluded',n_minima:'min_n',condiciones:'conditions',tipos_publicacion:'publication_types',adicionales:'additional',aclaracion:'clarification',notas_revisores:'reviewer_notes',catalogo_variables:'variable_catalogs',catalogos:'catalogs',activo_id:'active_id',catalogo_origen:'catalog_origin'};
 export const LEGACY_TEMPLATES={intervencion:'intervention',diagnostico:'diagnostic',pronostico:'prognosis',otras:'other'};
@@ -23,9 +24,17 @@ export function migrateCatalog(value){
  return c;
 }
 export const isLegacyDocument=d=>d?.format==='pico-document'&&LEGACY_SCHEMA_VERSIONS.includes(d.schema_version);
+// 1.0.0 -> 1.1.0: languages block, not stated, right after publication_types (same key order as new documents).
+function addLanguages(d){
+ const p=d.pico;if(!p||typeof p!=='object'||'languages' in p)return d;
+ const out={};for(const [k,v] of Object.entries(p)){out[k]=v;if(k==='publication_types')out.languages={mode:null,included:[],conditions:{type:'doc',content:[{type:'paragraph'}]}};}
+ if(!('languages' in out))out.languages={mode:null,included:[],conditions:{type:'doc',content:[{type:'paragraph'}]}};
+ d.pico=out;return d;
+}
 export function migrateDocument(value){
  if(!isLegacyDocument(value))return value;
- const d=renameKeys(value);d.schema_version=SCHEMA_VERSION;const p=d.pico;if(!p||typeof p!=='object')return d;
+ if(value.schema_version==='1.0.0'){const d=addLanguages(copy(value));d.schema_version=SCHEMA_VERSION;return d;}
+ const d=renameKeys(value);d.schema_version=SCHEMA_VERSION;addLanguages(d);const p=d.pico;if(!p||typeof p!=='object')return d;
  if(p.question_type){p.question_type.code=code(p.question_type.code);p.question_type.template=template(p.question_type.template);}
  for(const x of p.comparators||[]){x.mode=code(x.mode);x.role=code(x.role);if('code' in x)x.code=code(x.code);}
  for(const x of p.outcomes||[])if(x?.details)x.details.importance=code(x.details.importance);

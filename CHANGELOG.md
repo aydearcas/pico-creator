@@ -1,3 +1,11 @@
+# 1.3.0 — 2026-10-19
+
+- PICO document schema 1.1.0. The schema now belongs to revsis-app (`schemas/pico-document/1.1.0.schema.json`, ADR 0035); `pico-document.schema.json` is an exact copy and is not edited here.
+- New **Languages** section below publication types: no restriction, or only the selected languages (ISO 639-2/B codes, as the MEDLINE language field: `eng`, `spa`, `fre`…), with a list of 23 common languages, any other three-letter code and a conditions field. Stored in `pico.languages` (`mode`, `included`, `conditions`); a completeness warning shows while it is not stated.
+- Languages appear after publication types in the preview, Markdown, Word and PDF, and in the current-RS JSON projection (`components.others`), exactly as revsis-app derives it.
+- Optional `import_review` block for drafts imported from Word or PDF (provenance, review marks and unplaced fragments). This version validates and keeps it; showing the marks comes later.
+- Documents with schema 1.0.0 are migrated on open by adding an unstated languages block; 0.1.0 and 0.2.0 documents are still migrated too. Drafts saved by earlier versions are migrated before they are offered for recovery.
+
 # 1.2.0 — 2026-10-17
 
 - PICO document schema 1.0.0: JSON keys and codes in English (for example `clinical_question`, `study_designs`, `RCT`, `USUAL_CARE`). The interface and exports stay bilingual.

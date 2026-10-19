@@ -44,3 +44,11 @@
 .catalog-switch input:disabled{opacity:.45;cursor:default}
 .catalog-switch input:focus-visible{outline:2px solid var(--ring);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.catalog-switch input,.catalog-switch input::before{transition:none}}
+.language-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px 14px;margin:4px 0 10px}
+.language-option{font-size:12px;color:var(--ink)}
+.language-option code{font-size:10px;color:var(--muted)}
+.language-other{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px;max-width:620px}
+.language-other input{width:90px}
+.language-other .add-button{width:auto;margin:0}
+.language-other .inline-warning{flex-basis:100%}
+.language-section>.rich-wrap{margin-top:10px}

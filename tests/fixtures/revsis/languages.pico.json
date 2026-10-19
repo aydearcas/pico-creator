@@ -1,0 +1,498 @@
+{
+  "format": "pico-document",
+  "schema_version": "1.1.0",
+  "text_format": "richtext-v1",
+  "document_id": "doc-synthetic-0001",
+  "document_revision": 3,
+  "created_at": "2026-10-01T10:00:00.000Z",
+  "updated_at": "2026-10-02T11:00:00.000Z",
+  "review_link": null,
+  "pico": {
+    "number": "1",
+    "section": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Tratamiento sintético"
+            }
+          ]
+        }
+      ]
+    },
+    "clinical_question": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "¿Es eficaz ",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "la intervención A frente a placebo en la enfermedad X?"
+            }
+          ]
+        }
+      ]
+    },
+    "question_type": {
+      "code": "INTERVENTION",
+      "template": "intervention",
+      "template_version": "1.0"
+    },
+    "criteria_version": "1.1",
+    "population": {
+      "text": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Adultos con enfermedad X"
+              }
+            ]
+          }
+        ]
+      },
+      "subpopulations": [
+        {
+          "id": "s1",
+          "text": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Subgrupo refractario"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2",
+          "text": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Subgrupo de inicio"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "interventions": [
+      {
+        "id": "i1",
+        "text": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Familia A"
+                }
+              ]
+            }
+          ]
+        },
+        "children": [
+          {
+            "id": "i1a",
+            "text": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Fármaco A1"
+                    }
+                  ]
+                }
+              ]
+            },
+            "children": []
+          },
+          {
+            "id": "i1b",
+            "text": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Fármaco A2"
+                    }
+                  ]
+                }
+              ]
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "i2",
+        "text": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Intervención B"
+                }
+              ]
+            }
+          ]
+        },
+        "children": []
+      }
+    ],
+    "comparators": [
+      {
+        "id": "c1",
+        "mode": "CONTROLLED",
+        "role": "COMPARATOR",
+        "code": "PLACEBO",
+        "specification": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "oral"
+                }
+              ]
+            }
+          ]
+        },
+        "children": []
+      },
+      {
+        "id": "c2",
+        "mode": "FREE",
+        "role": "COMPARATOR",
+        "text": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Tratamiento estándar local"
+                }
+              ]
+            }
+          ]
+        },
+        "children": [
+          {
+            "id": "c2a",
+            "text": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Variante 1"
+                    }
+                  ]
+                }
+              ]
+            },
+            "children": []
+          }
+        ]
+      }
+    ],
+    "outcomes": [
+      {
+        "id": "o1",
+        "name": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Remisión"
+                }
+              ]
+            }
+          ]
+        },
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Remisión clínica a 24 semanas"
+                }
+              ]
+            }
+          ]
+        },
+        "details": {
+          "importance": "CRITICAL",
+          "score": 8,
+          "timepoints": [
+            "24 semanas"
+          ],
+          "instruments": [
+            "Índice Z"
+          ],
+          "thresholds": [],
+          "minimal_important_difference": null
+        }
+      },
+      {
+        "id": "o2",
+        "name": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Efectos adversos graves"
+                }
+              ]
+            }
+          ]
+        },
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Infecciones"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Muerte"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "details": {
+          "importance": "IMPORTANT",
+          "score": 6,
+          "timepoints": [],
+          "instruments": [],
+          "thresholds": [
+            "≥1 evento"
+          ],
+          "minimal_important_difference": "5 %"
+        }
+      }
+    ],
+    "study_designs": {
+      "catalog_version": "1.1",
+      "included": [
+        {
+          "id": "d1",
+          "code": "RCT",
+          "min_n": 20,
+          "conditions": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Al menos 12 semanas"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "d2",
+          "code": "OBSERVATIONAL_COMPARATIVE",
+          "min_n": null,
+          "conditions": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        }
+      ],
+      "excluded": [
+        {
+          "id": "d3",
+          "code": "CASE_REPORT",
+          "min_n": null,
+          "conditions": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        }
+      ],
+      "remainder_excluded": false
+    },
+    "publication_types": {
+      "mode": "FULL_REPORTS_AND_OTHERS",
+      "additional": [
+        {
+          "id": "p1",
+          "code": "ABSTRACT",
+          "clarification": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "sólo de los últimos 2 años"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Sin restricción de idioma"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "languages": {
+      "mode": "RESTRICTED",
+      "included": [
+        "eng",
+        "spa",
+        "fre"
+      ],
+      "conditions": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Other languages if a translation is available."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "reviewer_notes": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Nota para revisores."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Segunda nota"
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "línea 2"
+            }
+          ]
+        }
+      ]
+    },
+    "variable_catalogs": null
+  }
+}
