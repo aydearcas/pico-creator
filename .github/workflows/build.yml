@@ -2,7 +2,8 @@ name: Verify and build PICO Creator
 on:
   push:
     branches: [main]
-    paths: ['src/**', 'tests/**', 'examples/**', 'skills/**', '*schema.json', 'package*.json', '.github/workflows/build.yml']
+    paths: ['src/**', 'tests/**', 'examples/**', 'skills/**', 'lib/**', 'types/**', '*schema.json', 'package*.json', 'vite*.config.js', '.github/workflows/build.yml']
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
@@ -17,6 +18,14 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run build
+      - name: Library in lib/ matches the source
+        shell: bash
+        run: |
+          npm run build:lib
+          if ! git diff --exit-code --stat -- lib; then
+            echo "::error title=lib/ is out of date::Run npm run build:lib and commit lib/"
+            exit 1
+          fi
       - name: Run npm test
         shell: bash
         run: |

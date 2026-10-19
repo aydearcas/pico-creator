@@ -1,4 +1,4 @@
-# PICO Creator 1.3.0
+# PICO Creator 1.4.0
 
 ## Quick start
 
@@ -86,3 +86,15 @@ Catalogue import is available in version 1.1.0. The editor has Import catalogue 
 Inside the editor, import a bilingual .pico-catalog.json file and turn on Show preloaded variables. Dropdowns add whole families or individual candidates as editable fields. Hiding suggestions preserves selections; changing language translates the options and leaves previously authored content intact.
 
 Try dermatomyositis loads a non-exhaustive built-in example. Clinical context and sources provides the example question, scope and source limitations; Download example JSON saves its catalogue. PICO schema 1.1.0 embeds the catalogue registry and selection provenance, including drafts and undo. Older 0.1.0, 0.2.0 and 1.0.0 documents, and 0.1.0 catalogues, are migrated on open. Exports contain selected criteria only.
+
+## Use the editor in another application
+
+The editor is the React component `PicoEditor` (revsis-app ADR 0036). Install the repository pinned to a tag and import the compiled library:
+
+```js
+import {PicoEditor} from 'pico-creator/editor';
+import 'pico-creator/editor.css';
+<PicoEditor document={doc} onChange={setDoc} lang="es" theme="light"/>
+```
+
+`onChange` receives the whole document after every change; undo and redo stay inside the component. Render it with a new `key` to start a new session. Load `pico-creator/exports` (PDF, Word, Markdown, current-RS JSON) only when exporting. React 19 is a peer dependency. Set `--pico-sticky-top` to the height of your own sticky header.
