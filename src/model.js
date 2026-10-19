@@ -3,7 +3,7 @@ import schema from '../pico-document.schema.json' with {type:'json'};
 import {validateCatalog} from './catalog-schema.js';
 import {SCHEMA_VERSION} from './migrate.js';
 const schemaCheck=new Ajv({strict:false}).compile(schema);
-export const VERSION='1.4.0';
+export const VERSION='1.4.1';
 export const uid=()=>globalThis.crypto?.randomUUID?.()||`id-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 export const rich=(text='')=>({type:'doc',content:[{type:'paragraph',...(text?{content:[{type:'text',text}]}:{})}]});
 export const copy=o=>JSON.parse(JSON.stringify(o));
