@@ -1,15 +1,15 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://pico-creator.local/schemas/pico-document-1.0.0.json",
-  "title": "PICO document 1.0.0",
-  "description": "Portable, rich clinical question. UTF-8; one question per file.",
+  "$id": "https://revsis.local/schemas/pico-document-1.1.0.json",
+  "title": "PICO document 1.1.0",
+  "description": "Portable, rich clinical question. UTF-8; one question per file. Source of truth: revsis-app schemas/pico-document/ (ADR 0035); PICO Creator keeps an exact copy.",
   "type": "object",
   "properties": {
     "format": {
       "const": "pico-document"
     },
     "schema_version": {
-      "const": "1.0.0"
+      "const": "1.1.0"
     },
     "text_format": {
       "const": "richtext-v1"
@@ -231,6 +231,9 @@
               }
             }
           ]
+        },
+        "languages": {
+          "$ref": "#/$defs/languages"
         }
       },
       "required": [
@@ -245,7 +248,18 @@
         "outcomes",
         "study_designs",
         "publication_types",
+        "languages",
         "reviewer_notes"
+      ]
+    },
+    "import_review": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/importReview"
+        }
       ]
     }
   },
@@ -1091,6 +1105,211 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 160
+        }
+      }
+    },
+    "languages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "included",
+        "conditions"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            null,
+            "ANY",
+            "RESTRICTED"
+          ]
+        },
+        "included": {
+          "type": "array",
+          "maxItems": 200,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z]{3}$"
+          }
+        },
+        "conditions": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "if": {
+        "not": {
+          "properties": {
+            "mode": {
+              "const": "RESTRICTED"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "included": {
+            "maxItems": 0
+          }
+        }
+      },
+      "description": "Eligible languages. mode null: not stated; ANY: no restriction; RESTRICTED: only the ISO 639-2/B codes in included (as MEDLINE LA: eng, spa, fre, ger...)."
+    },
+    "importReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "marks",
+        "unplaced"
+      ],
+      "description": "Provenance of a draft imported from a Word or PDF file by the importar-pico skill, and its pending review marks.",
+      "properties": {
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "file_name",
+            "sha256",
+            "file_format",
+            "imported_at",
+            "skill",
+            "skill_version"
+          ],
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "file_format": {
+              "enum": [
+                "DOCX",
+                "PDF"
+              ]
+            },
+            "imported_at": {
+              "type": "string",
+              "minLength": 1
+            },
+            "skill": {
+              "type": "string",
+              "minLength": 1
+            },
+            "skill_version": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "marks": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "$ref": "#/$defs/importMark"
+          }
+        },
+        "unplaced": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "$ref": "#/$defs/unplacedFragment"
+          }
+        }
+      }
+    },
+    "importMark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "field",
+        "item_id",
+        "status",
+        "reason",
+        "quote",
+        "page"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "enum": [
+            "number",
+            "section",
+            "clinical_question",
+            "question_type",
+            "criteria_version",
+            "population",
+            "interventions",
+            "comparators",
+            "outcomes",
+            "study_designs",
+            "publication_types",
+            "languages",
+            "reviewer_notes"
+          ]
+        },
+        "item_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "IMPORTED",
+            "REVIEW",
+            "NOT_IMPORTED"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "quote": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "page": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        }
+      }
+    },
+    "unplacedFragment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text",
+        "page"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        },
+        "page": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
         }
       }
     }

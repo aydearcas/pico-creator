@@ -29,7 +29,19 @@ test('Built local app: language, theme, templates, reorder, publication scope an
   doc.querySelector('[aria-label="Deshacer"]').click();await pause();assert.equal(studySection.querySelectorAll('.design-card').length,initial+1);
   const interventionClear=intervention.querySelector('.clear-list');interventionClear.click();await pause();doc.querySelector('.modal-actions .primary').click();await pause();
   assert.equal(intervention.querySelectorAll('.item-card').length,0);doc.querySelector('[aria-label="Deshacer"]').click();await pause();assert(intervention.querySelector('.category-rich'));
+  const languages=doc.querySelector('.language-section');assert(!languages.querySelector('.language-grid'));
+  choose(languages.querySelector('select'),'RESTRICTED');await pause();assert.equal(languages.querySelectorAll('.language-option input').length,23);
+  const option=code=>[...languages.querySelectorAll('.language-option')].find(x=>x.querySelector('code').textContent===code);
+  option('spa').querySelector('input').click();await pause();option('eng').querySelector('input').click();await pause();
+  const other=languages.querySelector('.language-other input');const typeCode=v=>{Object.getOwnPropertyDescriptor(dom.window.HTMLInputElement.prototype,'value').set.call(other,v);other.dispatchEvent(new dom.window.Event('input',{bubbles:true}));};
+  typeCode('sw');await pause();assert(languages.querySelector('.language-other .inline-warning'));assert(languages.querySelector('.language-other button').disabled);
+  typeCode('xyz');await pause();languages.querySelector('.language-other button').click();await pause();
+  assert(option('xyz').querySelector('input').checked);assert(option('spa').querySelector('input').checked);
+  button('Vista previa').click();await pause();assert(doc.querySelector('.print-document').textContent.includes('Español, Inglés, xyz'));button('Editar').click();await pause();
+  choose(doc.querySelector('.language-section select'),'ANY');await pause();doc.querySelector('.modal-actions .primary').click();await pause();
+  assert(!doc.querySelector('.language-section .language-grid'));
   button('Vista previa').click();await pause();assert(doc.querySelector('.print-table'));assert(doc.querySelector('.print-document').textContent.includes('Tipos de publicación'));
+  assert(doc.querySelector('.print-document').textContent.includes('Sin restricción de idioma'));
   button('Editar').click();await pause();assert(doc.querySelector('.question-type select'));
   assert.deepEqual(errors,[]);
  }finally{dom.window.close();}

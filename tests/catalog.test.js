@@ -76,10 +76,10 @@ test('Embedded catalogue integrity and unknown active catalogues are checked',()
  const d=setup();d.pico.variable_catalogs.catalogs[0].outcomes[0].source_ids=['absent'];assert(validateDocument(d).length>0);
  const e=setup();e.pico.variable_catalogs.active_id='absent';assert(validateDocument(e).includes('CATALOG_ACTIVE'));
 });
-test('Old PICO JSON (Spanish 0.1.0) migrates to 1.0.0 without losing content or identity; export contains selected content only',()=>{
+test('Old PICO JSON (Spanish 0.1.0) migrates to 1.1.0 without losing content or identity; export contains selected content only',()=>{
  const old=JSON.parse(fs.readFileSync(new URL('./fixtures/legacy-0.1.0.pico.json',import.meta.url),'utf8'));
  assert.deepEqual(validateDocument(old),['SCHEMA_VERSION']);assert(isLegacyDocument(old));
- const upgraded=migrateDocument(old);assert.equal(upgraded.document_id,old.documento_id);assert.equal(upgraded.schema_version,'1.0.0');
+ const upgraded=migrateDocument(old);assert.equal(upgraded.document_id,old.documento_id);assert.equal(upgraded.schema_version,'1.1.0');
  assert.equal(plain(upgraded.pico.clinical_question),plain(old.pico.pregunta_clinica));
  assert.deepEqual(validateDocument(upgraded),[]);assert.equal(old.schema_version,'0.1.0');
  assert.deepEqual(upgraded,exampleFile);
