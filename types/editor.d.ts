@@ -55,6 +55,10 @@ export function isLegacyDocument(document: unknown): boolean;
 export function previewHtml(document: PicoDocument, lang?: PicoLanguage, includeNotes?: boolean, layout?: 'table' | 'sections'): string;
 export function toMarkdown(document: PicoDocument, lang?: PicoLanguage, options?: {layout?: 'table' | 'sections'; styles?: 'clean' | 'html'; notes?: boolean}): string;
 export function translate(lang: PicoLanguage, key: string): string;
+/** The fixed prompt for the importar-pico skill (Word or PDF import), with optional notes at the end. */
+export function importPrompt(lang?: PicoLanguage, notes?: string): string;
+/** Import marks still to review plus text not placed (0 when there is no import_review). */
+export function pendingCount(document: PicoDocument): number;
 export const VERSION: string;
 export const SCHEMA_VERSION: string;
 /** Language codes (ISO 639-2/B) offered by the editor, with their [English, Spanish] names. */

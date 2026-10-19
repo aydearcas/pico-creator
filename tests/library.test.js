@@ -33,7 +33,8 @@ test('PicoEditor reports whole documents, keeps undo inside and adopts another d
  const pause=()=>new Promise(r=>setTimeout(r,120));
  try{
   const React=(await import('react')).default;const {createRoot}=await import('react-dom/client');
-  const {PicoEditor,newDocument,validateDocument}=await import('../lib/editor.js');
+  const {PicoEditor,newDocument,validateDocument,importPrompt,pendingCount}=await import('../lib/editor.js');
+  assert(importPrompt('es','Sólo la 2').includes('importar-pico'));assert.equal(pendingCount(newDocument()),0);
   const first=newDocument('intervention');first.pico.number='1';const second=newDocument('diagnostic');second.pico.number='2';
   const changes=[];const handle={current:null};let setDocument;
   function Host(){const [doc,setDoc]=React.useState(first);setDocument=setDoc;return React.createElement(PicoEditor,{document:doc,onChange:d=>{changes.push(d);setDoc(d);},lang:'es',theme:'dark',ref:handle,header:React.createElement('p',{id:'host-header'},'Cabecera')});}
