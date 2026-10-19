@@ -1,4 +1,4 @@
-# Creador de PICOs 1.3.0
+# Creador de PICOs 1.4.0
 
 ## Uso inmediato
 
@@ -93,3 +93,15 @@ Dentro del editor, pulsa **Importar catálogo** y elige un archivo .pico-catalog
 Pulsa **Probar dermatomiositis** para cargar el ejemplo sin añadir automáticamente criterios. En **Contexto clínico y fuentes**, puedes incorporar su pregunta clínica. **Descargar JSON de ejemplo** permite guardar el catálogo. Es ilustrativo, no exhaustivo, y señala sus limitaciones.
 
 El archivo PICO guarda los catálogos importados y el origen de las selecciones, incluidos borrador y deshacer/rehacer. El esquema editable es el 1.1.0; los documentos 0.1.0, 0.2.0 y 1.0.0 y los catálogos 0.1.0 se migran al abrirlos. Las versiones anteriores del programa no abren el nuevo esquema. Las exportaciones solo incluyen los criterios seleccionados.
+
+## Usar el editor en otra aplicación
+
+El editor es el componente React `PicoEditor` (ADR 0036 de revsis-app). Instala el repositorio fijado a una etiqueta e importa la biblioteca compilada:
+
+```js
+import {PicoEditor} from 'pico-creator/editor';
+import 'pico-creator/editor.css';
+<PicoEditor document={doc} onChange={setDoc} lang="es" theme="light"/>
+```
+
+`onChange` recibe el documento completo tras cada cambio; deshacer y rehacer van dentro del componente. Para empezar una sesión nueva, renderízalo con otra `key`. Carga `pico-creator/exports` (PDF, Word, Markdown y JSON para RS) sólo al exportar. React 19 es una dependencia del proyecto que lo usa. Ajusta `--pico-sticky-top` a la altura de tu propia cabecera fija.

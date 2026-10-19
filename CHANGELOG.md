@@ -1,3 +1,15 @@
+# 1.4.0 — 2026-10-19
+
+- The editor is now a reusable React component, `PicoEditor` (revsis-app ADR 0036). The standalone app is a thin layer around it (home, files, browser draft, export, theme, language and help) and works as before.
+- Library build in `lib/` (`npm run build:lib`), with types in `types/`:
+  - `pico-creator/editor`: `PicoEditor` and light helpers (`newDocument`, `validateDocument`, `warnings`, `legacy`, `migrateDocument`, `previewHtml`, `toMarkdown`, `translate`);
+  - `pico-creator/exports`: `exportBlob`, `toWord`, `toPdf` and `fileName`. It loads docx and pdfmake, so hosts import it only when exporting;
+  - `pico-creator/editor.css` and `pico-creator/schema`.
+  React and React DOM are peer dependencies; ajv is now a runtime dependency.
+- Styles are scoped under `.pico-root` with `:where()` (no added specificity) and the theme is `data-theme` on that element. The sticky formatting bar uses `--pico-sticky-top` (68 px by default) so hosts can place it under their own header.
+- Preview and Markdown live in `src/present.js`; `src/exports.js` re-exports them.
+- CI also runs on pull requests and fails if `lib/` does not match a clean library build.
+
 # 1.3.0 — 2026-10-19
 
 - PICO document schema 1.1.0. The schema now belongs to revsis-app (`schemas/pico-document/1.1.0.schema.json`, ADR 0035); `pico-document.schema.json` is an exact copy and is not edited here.

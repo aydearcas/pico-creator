@@ -1,4 +1,4 @@
-# PICO Creator 1.3.0
+# PICO Creator 1.4.0
 
 [Español](README_ES.md) · [English](README_EN.md)
 
