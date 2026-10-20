@@ -48,7 +48,7 @@ export function PicoEditor({document:external,onChange,lang='en',theme='light',h
  const replaceList=(key,list)=>update(p=>{p[key]=list;},true);
  function clearList(action,allStudies=false){setModal({type:'confirm',text:t(allStudies?'clearStudiesConfirm':'clearAllConfirm'),action});}
  const clearButton=(list,action)=><button type="button" className="text-button clear-list" disabled={!list.length} onClick={()=>clearList(action)}>{t('clearAll')}</button>;
- const badges=(field,itemId=null)=><MarkBadges marks={marksFor(doc,field,itemId)} onResolve={id=>update((p,d)=>resolveMark(d,id),true)}/>;
+ const badges=(field,itemId=null)=><MarkBadges doc={doc} marks={marksFor(doc,field,itemId)} onResolve={id=>update((p,d)=>resolveMark(d,id),true)}/>;
  const fieldLabels={number:t('number'),section:t('section'),clinical_question:t('clinicalQuestion'),question_type:t('questionType'),criteria_version:t('versionCriteria'),population:lbl.population,interventions:lbl.intervention,comparators:lbl.comparator,outcomes:lbl.outcome,study_designs:t('studyTypes'),publication_types:t('publications'),languages:t('languages'),reviewer_notes:t('reviewerNotes')};
  // "Go to field": the item card, or the field's container; it flashes so the eye finds it.
  function goTo(mark){const root=rootRef.current;const el=(mark.item_id&&root?.querySelector(`[data-item-id="${mark.item_id}"]`))||root?.querySelector(`[data-pico-field="${mark.field}"]`);if(!el)return;el.scrollIntoView?.({block:'center',behavior:'smooth'});el.classList.add('mark-flash');setTimeout(()=>el.classList.remove('mark-flash'),1600);}

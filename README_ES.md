@@ -1,4 +1,4 @@
-# Creador de PICOs 1.5.0
+# Creador de PICOs 1.6.0
 
 ## Uso inmediato
 
@@ -36,7 +36,7 @@ La barra actúa sobre el último campo de texto enfocado. Los colores son presen
 
 ## Guardado y recuperación
 
-**Guardar JSON** conserva textos, formato, jerarquía, orden, IDs, n mínima y metadatos. **Abrir** admite el JSON canónico `pico-document` versión 1.1.0 (claves y códigos en inglés). Los archivos de las versiones 0.1.0 y 0.2.0 (claves y códigos en español) y 1.0.0 (sin idiomas) se migran al abrirlos, sin cambiar contenido ni identificadores; el archivo original no se modifica hasta que se guarda. Un Word o un PDF no se convierte solo: **Importar desde Word o PDF** (portada) da el prompt para la skill `importar-pico` de revsis-app, que entrega un borrador `.pico.json`. Al abrirlo, el editor muestra la **revisión de la importación**: cada campo dudoso o no importado lleva una insignia con el motivo, la cita y la página, y un panel arriba lista lo pendiente y el texto sin colocar. Cada marca se quita con «Marcar como revisado»; no hay revisión en bloque.
+**Guardar JSON** conserva textos, formato, jerarquía, orden, IDs, n mínima y metadatos. **Abrir** admite el JSON canónico `pico-document` versión 1.2.0 (claves y códigos en inglés). Los archivos de las versiones 0.1.0 y 0.2.0 (claves y códigos en español), 1.0.0 (sin idiomas) y 1.1.0 se migran al abrirlos, sin cambiar contenido ni identificadores; el archivo original no se modifica hasta que se guarda. Un Word o un PDF no se convierte solo: **Importar desde Word o PDF** (portada) da el prompt para la skill `importar-pico` de revsis-app, que entrega un borrador `.pico.json`. Al abrirlo, el editor muestra la **revisión de la importación**: cada campo dudoso o no importado lleva una insignia con el motivo, la cita y la página, y un panel arriba lista lo pendiente y el texto sin colocar. Cada marca se quita con «Marcar como revisado»; no hay revisión en bloque. **Crear desde una pregunta** (portada) recibe una pregunta en lenguaje llano o con formato de pregunta clínica, con número y notas opcionales, y da el prompt para la skill `proponer-pico` de revsis-app (la pregunta va al final). Su borrador `.pico.json` se abre con la **revisión de la propuesta**: la pregunta de la que sale, la insignia «Asumido» en lo que ha propuesto el asistente y «Sin completar» en lo que deja para que lo decida el grupo.
 
 Al abrir el HTML directamente, Guardar descarga un JSON. Al usar el servidor local, Chrome/Edge pueden permitir elegir un destino y sobrescribir el mismo archivo mediante el selector nativo. En Firefox/Safari u otros contextos se usa la descarga. Un guardado por descarga no confirma dónde ha colocado el navegador el archivo.
 

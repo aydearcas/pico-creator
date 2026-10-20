@@ -1,3 +1,11 @@
+# 1.6.0 — 2026-10-20
+
+- PICO document schema **1.2.0**, an exact copy of revsis-app's (ADR 0044), with additions only: the `QUESTION` origin of `import_review` (the question as written, in `question_text`, with no file name) and the `ASSUMED` mark status. Documents with schema 1.1.0 are migrated on open by updating the version; new documents use 1.2.0.
+- **Create from a question** on the home screen: the question (plain words or a clinical question), an optional number and notes, and the fixed prompt for revsis-app's `proponer-pico` skill with the question last (copy button, enabled once there is a question); **Load result** opens the `.pico.json` it returns.
+- **Proposal review** in the editor for drafts from a question: the panel shows the question they came from; an **Assumed** badge marks what the assistant proposed and is pending, like Review, until marked as reviewed; an empty field the assistant left for the group reads **Not completed** instead of Not imported.
+- The home cards are laid out in two columns.
+- Library: `pico-creator/editor` exports `proposePrompt`.
+
 # 1.5.0 — 2026-10-19
 
 - **Import from Word or PDF** on the home screen (revsis-app ADR 0038): the steps, the fixed prompt for the `importar-pico` skill with optional notes (copy button), and loading the `.pico.json` it returns.

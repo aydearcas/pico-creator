@@ -57,6 +57,8 @@ export function toMarkdown(document: PicoDocument, lang?: PicoLanguage, options?
 export function translate(lang: PicoLanguage, key: string): string;
 /** The fixed prompt for the importar-pico skill (Word or PDF import), with optional notes at the end. */
 export function importPrompt(lang?: PicoLanguage, notes?: string): string;
+/** The fixed prompt for the proponer-pico skill (create from a question): notes and number if given, the question last. */
+export function proposePrompt(lang?: PicoLanguage, question?: string, notes?: string, number?: string): string;
 /** Import marks still to review plus text not placed (0 when there is no import_review). */
 export function pendingCount(document: PicoDocument): number;
 export const VERSION: string;

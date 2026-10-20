@@ -4,10 +4,11 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {JSDOM,VirtualConsole} from 'jsdom';
 import {validateDocument,warnings,copy} from '../src/model.js';
+import {migrateDocument} from '../src/migrate.js';
 import {pendingCount,pendingMarks,importedMarks,marksFor,resolveMark,discardFragment,itemLabel,importPrompt,fmt} from '../src/review.js';
 
 export function importedDocument(){
- const d=JSON.parse(fs.readFileSync(new URL('./fixtures/revsis/languages.pico.json',import.meta.url),'utf8'));
+ const d=migrateDocument(JSON.parse(fs.readFileSync(new URL('./fixtures/revsis/languages.pico.json',import.meta.url),'utf8')));
  const p=d.pico;const first=p.interventions[0];
  d.import_review={source:{file_name:'pico-sintetica.docx',sha256:'a'.repeat(64),file_format:'DOCX',imported_at:'2026-10-19T12:00:00.000Z',skill:'importar-pico',skill_version:'1.0.0'},
   marks:[{id:'m1',field:'clinical_question',item_id:null,status:'REVIEW',reason:'Pregunta reconstruida',quote:'¿Es eficaz…?',page:null},

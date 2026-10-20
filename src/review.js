@@ -1,15 +1,20 @@
-// Import marks of a draft imported from Word or PDF by the importar-pico skill (import_review,
-// schema 1.1.0; revsis-app ADR 0035 and 0038), and the prompt that asks an assistant for it.
+// Marks of a draft built by a skill (import_review): imported from Word or PDF by importar-pico
+// (schema 1.1.0; revsis-app ADR 0035 and 0038) or proposed from a question by proponer-pico (schema
+// 1.2.0, ADR 0044), and the prompts that ask an assistant for them.
 import {plain,label,DESIGN_LABELS,COMP_LABELS,PUB_LABELS} from './model.js';
 import {translate} from './i18n.js';
 
-export const PENDING=['REVIEW','NOT_IMPORTED'];
+export const PENDING=['REVIEW','NOT_IMPORTED','ASSUMED'];
 export const fmt=(text,vars={})=>String(text).replace(/\{(\w+)\}/g,(m,k)=>k in vars?String(vars[k]):m);
 const review=d=>d?.import_review||null;
 export const isPending=m=>PENDING.includes(m.status);
 export const pendingMarks=d=>(review(d)?.marks||[]).filter(isPending);
 export const importedMarks=d=>(review(d)?.marks||[]).filter(m=>!isPending(m));
 export const unplaced=d=>review(d)?.unplaced||[];
+/** The draft was proposed from a question (proponer-pico), not imported from a file. */
+export const fromQuestion=d=>review(d)?.source?.file_format==='QUESTION';
+/** Translation key of a mark's badge: an empty field of a proposal is "not completed", not "not imported". */
+export const markKey=(d,m)=>m.status==='NOT_IMPORTED'&&fromQuestion(d)?'mark_MISSING':'mark_'+m.status;
 /** Marks still to review plus text not placed: while above 0, revsis does not accept the document as a version. */
 export const pendingCount=d=>pendingMarks(d).length+unplaced(d).length;
 /** Pending marks of a field (itemId null) or of one item. */
@@ -33,3 +38,13 @@ export function itemLabel(p,id,lang='en'){
 
 /** The fixed prompt for the importar-pico skill, with the notes of this import at the end (ADR 0028). */
 export function importPrompt(lang='en',notes=''){const t=k=>translate(lang,k);const extra=String(notes||'').trim();return t('importPromptText')+(extra?'\n\n'+t('importPromptNotes')+'\n'+extra:'');}
+/** The fixed prompt for the proponer-pico skill (revsis-app ADR 0044): the instructions, then the notes and the
+ * question number if given, and the question last, so that what the person typed never comes before the instructions. */
+export function proposePrompt(lang='en',question='',notes='',number=''){
+ const t=k=>translate(lang,k);const clean=v=>String(v||'').trim();
+ const parts=[t('proposePromptText')];
+ if(clean(notes))parts.push(t('proposePromptNotes')+'\n'+clean(notes));
+ if(clean(number))parts.push(t('proposePromptNumber')+' '+clean(number).toLowerCase());
+ parts.push(t('proposePromptQuestion')+'\n'+clean(question));
+ return parts.join('\n\n');
+}
