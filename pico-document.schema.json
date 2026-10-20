@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://revsis.local/schemas/pico-document-1.1.0.json",
-  "title": "PICO document 1.1.0",
+  "$id": "https://revsis.local/schemas/pico-document-1.2.0.json",
+  "title": "PICO document 1.2.0",
   "description": "Portable, rich clinical question. UTF-8; one question per file. Source of truth: revsis-app schemas/pico-document/ (ADR 0035); PICO Creator keeps an exact copy.",
   "type": "object",
   "properties": {
@@ -9,7 +9,7 @@
       "const": "pico-document"
     },
     "schema_version": {
-      "const": "1.1.0"
+      "const": "1.2.0"
     },
     "text_format": {
       "const": "richtext-v1"
@@ -1163,7 +1163,7 @@
         "marks",
         "unplaced"
       ],
-      "description": "Provenance of a draft imported from a Word or PDF file by the importar-pico skill, and its pending review marks.",
+      "description": "Provenance of a draft built by a skill, from a Word or PDF file (importar-pico) or from a question written by the user (proponer-pico, file_format QUESTION), and its pending review marks.",
       "properties": {
         "source": {
           "type": "object",
@@ -1178,17 +1178,22 @@
           ],
           "properties": {
             "file_name": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "minLength": 1
             },
             "sha256": {
               "type": "string",
-              "pattern": "^[0-9a-f]{64}$"
+              "pattern": "^[0-9a-f]{64}$",
+              "description": "SHA-256 of the file or, for QUESTION, of question_text in UTF-8."
             },
             "file_format": {
               "enum": [
                 "DOCX",
-                "PDF"
+                "PDF",
+                "QUESTION"
               ]
             },
             "imported_at": {
@@ -1202,8 +1207,47 @@
             "skill_version": {
               "type": "string",
               "minLength": 1
+            },
+            "question_text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 5000,
+              "description": "The question as the user wrote it (QUESTION only)."
             }
-          }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "file_format": {
+                    "const": "QUESTION"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "question_text"
+                ],
+                "properties": {
+                  "file_name": {
+                    "type": "null"
+                  }
+                }
+              },
+              "else": {
+                "not": {
+                  "required": [
+                    "question_text"
+                  ]
+                },
+                "properties": {
+                  "file_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ]
         },
         "marks": {
           "type": "array",
@@ -1266,8 +1310,10 @@
           "enum": [
             "IMPORTED",
             "REVIEW",
-            "NOT_IMPORTED"
-          ]
+            "NOT_IMPORTED",
+            "ASSUMED"
+          ],
+          "description": "ASSUMED: not stated in the source, proposed by the skill; pending like REVIEW and NOT_IMPORTED."
         },
         "reason": {
           "type": "string",

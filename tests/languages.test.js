@@ -1,4 +1,4 @@
-// Languages and import marks of schema 1.1.0 (revsis-app ADR 0035). revsis-app owns the schema:
+// Languages and import marks of schema 1.1.0 (revsis-app ADR 0035), current schema 1.2.0 (ADR 0044). revsis-app owns the schema:
 // pico-document.schema.json and tests/fixtures/revsis/ are exact copies of its files.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -11,13 +11,13 @@ const read=name=>JSON.parse(fs.readFileSync(new URL('./fixtures/revsis/'+name,im
 const schema=JSON.parse(fs.readFileSync(new URL('../pico-document.schema.json',import.meta.url),'utf8'));
 const withLanguages=block=>{const d=newDocument();Object.assign(d.pico.languages,block);return d;};
 
-test('The schema is revsis 1.1.0 and new documents carry an unstated languages block after publication types',()=>{
- assert.equal(SCHEMA_VERSION,'1.1.0');assert.equal(schema.properties.schema_version.const,'1.1.0');assert(schema.$id.endsWith('pico-document-1.1.0.json'));
+test('The schema is revsis 1.2.0 and new documents carry an unstated languages block after publication types',()=>{
+ assert.equal(SCHEMA_VERSION,'1.2.0');assert.equal(schema.properties.schema_version.const,'1.2.0');assert(schema.$id.endsWith('pico-document-1.2.0.json'));
  const keys=Object.keys(newDocument().pico);assert.equal(keys[keys.indexOf('publication_types')+1],'languages');
  assert.deepEqual(newDocument().pico.languages,{mode:null,included:[],conditions:rich()});
 });
 
-test('A 1.0.0 document migrates to 1.1.0 keeping content, identity and key order; the original is not modified',()=>{
+test('A 1.0.0 document migrates to the current schema keeping content, identity and key order; the original is not modified',()=>{
  const current=exampleDocument();const old=copy(current);old.schema_version='1.0.0';delete old.pico.languages;
  assert.deepEqual(validateDocument(old),['SCHEMA_VERSION']);assert(isLegacyDocument(old));
  const upgraded=migrateDocument(old);assert.equal(old.schema_version,'1.0.0');assert(!('languages' in old.pico));
@@ -26,7 +26,7 @@ test('A 1.0.0 document migrates to 1.1.0 keeping content, identity and key order
 });
 
 test('The revsis synthetic document validates and its projection is identical to revsis project_question()',()=>{
- const d=read('languages.pico.json');assert.deepEqual(validateDocument(d),[]);
+ const d=migrateDocument(read('languages.pico.json'));assert.deepEqual(validateDocument(d),[]);
  for(const lang of ['es','en']){
   const expected=read(`languages.projection.${lang}.json`);const actual=legacy(d,lang);
   delete expected.source;delete actual.source;assert.deepEqual(actual,expected);

@@ -1,4 +1,4 @@
-# PICO Creator 1.5.0
+# PICO Creator 1.6.0
 
 ## Quick start
 
@@ -27,7 +27,7 @@ The toolbar targets the last focused rich-text field. Strikethrough and colour a
 
 ## Files and recovery
 
-The canonical `.pico.json` file uses `format: pico-document`, schema 1.1.0 (English keys and codes), and preserves structure, IDs, order, rich formatting, thresholds and metadata. Open accepts this JSON. A Word or PDF file is not converted by the app: **Import from Word or PDF** (home screen) gives the prompt for revsis-app's `importar-pico` skill, which returns a `.pico.json` draft. When it opens, the editor shows the **import review**: each doubtful or missing field has a badge with the reason, quote and page, and a panel at the top lists what is pending and the text not placed. Each mark is cleared with Mark as reviewed; there is no bulk review. Files with schema 0.1.0 or 0.2.0 (Spanish keys and codes) or 1.0.0 (no languages) are migrated on open without changing content or IDs. Unknown schemas and invalid structures are rejected rather than silently stripped.
+The canonical `.pico.json` file uses `format: pico-document`, schema 1.2.0 (English keys and codes), and preserves structure, IDs, order, rich formatting, thresholds and metadata. Open accepts this JSON. A Word or PDF file is not converted by the app: **Import from Word or PDF** (home screen) gives the prompt for revsis-app's `importar-pico` skill, which returns a `.pico.json` draft. When it opens, the editor shows the **import review**: each doubtful or missing field has a badge with the reason, quote and page, and a panel at the top lists what is pending and the text not placed. Each mark is cleared with Mark as reviewed; there is no bulk review. **Create from a question** (home screen) takes a question in plain words or as a clinical question, with an optional number and notes, and gives the prompt for revsis-app's `proponer-pico` skill (the question goes last). Its `.pico.json` draft opens with a **proposal review**: the question it came from, an **Assumed** badge on what the assistant proposed and **Not completed** on what it left for the group to decide. Files with schema 0.1.0 or 0.2.0 (Spanish keys and codes), 1.0.0 (no languages) or 1.1.0 are migrated on open without changing content or IDs. Unknown schemas and invalid structures are rejected rather than silently stripped.
 
 Opening the HTML directly uses download-based saving. On localhost, browsers supporting File System Access can use a native file picker and save back to the same file; other browsers download the JSON. A download does not confirm the file's final directory.
 
